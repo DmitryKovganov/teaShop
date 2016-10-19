@@ -4,6 +4,7 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
-    "express": "~4.13.4"
+    "express": "~4.13.4",
+    "mongoose": "*"
   }
 }
