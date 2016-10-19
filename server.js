@@ -1,22 +1,20 @@
 // modules =================================================
 var express = require('express');
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/teadb');
-
-// config files
-// var db = require('./config/db');
-
 var app = express();
 
-// set the static files location /public/img will be /img for users
+
+// config files
+var config = require('./config/db');
+
+// configuration ===========================================
+var db = mongoose.connect(config.url);
 app.use(express.static(__dirname + '/public')); 
 
 
 // routes ==================================================
 app.use('/', require('./routes/index'));
-app.use('/nerd', require('./routes/nerd'));
-
+app.use('/tea', require('./routes/tea'));
 
 // start app ===============================================
 var port = process.env.PORT || 8080; 
