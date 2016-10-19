@@ -9,6 +9,7 @@ var config = require('./config/db');
 
 // configuration ===========================================
 var db = mongoose.connect(config.url);
+
 app.use(express.static(__dirname + '/public')); 
 
 
