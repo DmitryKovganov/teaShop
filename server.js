@@ -16,10 +16,12 @@ app.use(express.static(__dirname + '/public'));
 // routes ==================================================
 app.use('/', require('./routes/index'));
 app.use('/tea', require('./routes/tea'));
+app.use('/coffee', require('./routes/coffee'));
 
 // start app ===============================================
 var port = process.env.PORT || 8080; 
 app.listen(port);
+
 
 // expose app           
 exports = module.exports = app;
