@@ -40,7 +40,17 @@ router.post('/init', function(req, res, next) {
 
 // filter
 router.post('/', function(req, res, next) {
-	Tea.find(req.body, function(err, data) {
+	var p = req.body;
+
+	Tea.find({
+			type: 		{ $in: p.type }, 
+			region: 	{ $in: p.region },
+			oxidation: 	{ $in: p.oxidation },
+			leaf: 		{ $in: p.leaf },
+			label: 		{ $in: p.label },
+			price: 		{ $gte: p.price_at, $lt: p.price_to}
+	    }, 
+	    function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }

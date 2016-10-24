@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('teaController', function($scope, $http, TeaService) {
 
-	$scope.formData = {type: 'sinensis', oxidation: 'black', label: 'Lipton'};
+	$scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 10, price_to: 40};
 
 	TeaService.get()
 		.success(function(data) {
@@ -55,7 +55,7 @@ app.factory('TeaService', function($http) {
 // coffee -------------------------------------------------
 app.controller('coffeeController', function($scope, $http, CoffeeService) {
 
-	$scope.formData = {type: 'arabica', technology: 'powder', label: 'Lavazza'};
+	$scope.formData = {type: 'arabica', region: ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'], technology: 'powder', label: ['Lavazza', 'Starbucks'], price_at: 30, price_to: 50};
 
 	CoffeeService.get()
 		.success(function(data) {

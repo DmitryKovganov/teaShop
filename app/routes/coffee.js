@@ -38,13 +38,24 @@ router.post('/init', function(req, res, next) {
 
 // filter
 router.post('/', function(req, res, next) {
-	Coffee.find(req.body, function(err, data) {
+
+	var p = req.body;
+
+	Coffee.find({
+			type: { $in: p.type }, 
+			region: { $in: p.region },
+			technology: { $in: p.technology },
+			label: { $in: p.label },
+			price: { $gte: p.price_at, $lt: p.price_to}
+	    }, 
+	    function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }
 
 	    res.json(data);
 	});
+
 });
 
 module.exports = router;
