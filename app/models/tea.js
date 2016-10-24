@@ -4,8 +4,7 @@ module.exports = mongoose.model('Tea', {
 	type		: String, // sinensis (китайская разновидность)/ assamica (Ассамская) / (Камбоджийская )
 	region		: String, // Китайский / Индийский / Цейлонский / Японский / Индокитай / Африканский / Турецкий / Иранский
     oxidation	: String, // зеленый / черный / белый / желтый / улун / пуэр
-    technology	: String, // **
-    description	: String,
+    leaf		: String, // **
     label		: String,
     price		: Number // 1kg
 });
