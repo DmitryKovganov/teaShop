@@ -5,30 +5,45 @@ var Coffee = require('../models/coffee');
 
 // get all
 router.get('/', function(req, res, next) {
-	Coffee.create({
-		type		: "Arabica",
-		region		: "Mocco",
-	    label		: "Nescafe",
-	    price		: 120
-	});
 
 	Coffee.find(function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }
-
-	    res.send(data);
+	    
+	    res.json(data);
 	});
+});
+
+router.post('/init', function(req, res, next) {
+	var type = ['arabica', 'canephora'];
+	var region = ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'];
+	var technology = ['powder', 'freeze-dried', 'granulated'];
+	var label = ['Baristas', 'Dallmayr', 'Indian Coffee House', 'Lavazza', 'Nestle', 'Starbucks', 'Tchibo'];
+
+	var count = type.length * region.length * technology.length * label.length;
+
+	for(var i = 0; i < count; i++) {
+		Coffee.create({
+			type		: type[Math.floor((Math.random() * type.length))],
+			region		: region[Math.floor((Math.random() * region.length))],
+		    technology	: technology[Math.floor((Math.random() * technology.length))],
+		    label		: label[Math.floor((Math.random() * label.length))],
+		    price		: Math.floor((Math.random() * 50) + 20)
+		});
+	}
+
+	req.send('init complete');
 });
 
 // filter
 router.post('/', function(req, res, next) {
-	Coffee.find(function(err, data) {
+	Coffee.find(req.body, function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }
 
-	    res.send(teas);
+	    res.json(data);
 	});
 });
 

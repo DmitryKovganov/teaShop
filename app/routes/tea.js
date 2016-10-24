@@ -5,6 +5,7 @@ var Tea = require('../models/tea');
 
 // get all
 router.get('/', function(req, res, next) {
+
 	Tea.find(function(err, data) {
 	    if (err) {
 	        res.send(err)
@@ -14,7 +15,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/init', function(req, res, next) {
+router.post('/init', function(req, res, next) {
 	var type = ['sinensis', 'assamica'];
 	var region = ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'];
 	var oxidation = ['green', 'black', 'white', 'yellow', 'oolong', 'puer'];
