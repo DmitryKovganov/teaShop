@@ -1,5 +1,33 @@
-<input type="checkbox" ng-click="useFilter()">
+<!-- <input type="checkbox"> -->
 
-<ul>
-    <li ng-repeat="tea in teas">{{ tea }}</li>
-</ul>
+<!-- <button type="button" ng-click="useFilter()">Найти</button> -->
+
+
+<!-- <br/>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="button-group">
+				<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog">Размер листа</span> <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><input type="checkbox"/>&nbsp;Крупный</li>
+					<li><input type="checkbox"/>&nbsp;Средний</li>
+					<li><input type="checkbox"/>&nbsp;Мелкий</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<div>Filter: {{ formData }}</div>
+
+<li><input type="checkbox" ng-model="formData.leaf['big']"/>Крупный</li>
+<li><input type="checkbox" ng-model="formData.leaf['middle']"/>Средний</li>
+<li><input type="checkbox" ng-model="formData.leaf['small']"/>Мелкий</li>
+
+<button type="button" ng-click="useFilter()">Найти</button>
+
+
+<div>
+	<span ng-repeat="tea in teas">{{ tea }}</span>
+</div>

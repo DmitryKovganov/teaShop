@@ -43,12 +43,13 @@ router.post('/', function(req, res, next) {
 	var p = req.body;
 
 	Tea.find({
-			type: 		{ $in: p.type }, 
-			region: 	{ $in: p.region },
-			oxidation: 	{ $in: p.oxidation },
-			leaf: 		{ $in: p.leaf },
-			label: 		{ $in: p.label },
-			price: 		{ $gte: p.price_at, $lt: p.price_to}
+			// type: 		{ $in: p.type }, 
+			// region: 	{ $in: p.region },
+			// oxidation: 	{ $in: p.oxidation },
+			// leaf: 		{ $in: p.leaf },
+			// label: 		{ $in: p.label },
+			// price: 		{ $gte: p.price_at, $lt: p.price_to}
+			$in: p
 	    }, 
 	    function(err, data) {
 	    if (err) {

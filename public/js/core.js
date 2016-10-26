@@ -23,7 +23,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('teaController', function($scope, $http, TeaService) {
 
-	$scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 10, price_to: 40};
+	// $scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 10, price_to: 40};
+	// $scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 0, price_to: 150};
+	
+	$scope.formData = { type : ['sinensis', 'assamica'],
+		region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
+		oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
+		leaf : ['big', 'middle', 'small'],
+		label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea']
+	};
 
 	TeaService.get()
 		.success(function(data) {
