@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.post('/init', function(req, res, next) {
+router.get('/init', function(req, res, next) {
 	var type = ['arabica', 'canephora'];
 	var region = ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'];
 	var technology = ['powder', 'freeze-dried', 'granulated'];
@@ -33,7 +33,7 @@ router.post('/init', function(req, res, next) {
 		});
 	}
 
-	req.send('init complete');
+	res.redirect('/');
 });
 
 // filter
@@ -42,11 +42,11 @@ router.post('/', function(req, res, next) {
 	var p = req.body;
 
 	Coffee.find({
-			type: { $in: p.type }, 
-			region: { $in: p.region },
+			type: 		{ $in: p.type }, 
+			region: 	{ $in: p.region },
 			technology: { $in: p.technology },
-			label: { $in: p.label },
-			price: { $gte: p.price_at, $lt: p.price_to}
+			label: 		{ $in: p.label },
+			price: 		{ $gte: p.price.at, $lt: p.price.to}
 	    }, 
 	    function(err, data) {
 	    if (err) {

@@ -23,14 +23,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('teaController', function($scope, $http, TeaService) {
 
-	// $scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 10, price_to: 40};
-	// $scope.formData = {type: 'sinensis', region: ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'], oxidation: 'black', leaf: 'middle', label: ['Lipton', 'Earl Grey'], price_at: 0, price_to: 150};
-	
 	$scope.formData = { type : ['sinensis', 'assamica'],
 		region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
 		oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
 		leaf : ['big', 'middle', 'small'],
-		label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea']
+		label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'],
+		price: { at: 28, to: 35 }
 	};
 
 	TeaService.get()
@@ -45,6 +43,10 @@ app.controller('teaController', function($scope, $http, TeaService) {
 			});
 	};
 
+	$scope.init = function() {
+		TeaService.init();
+	};
+
 });
 
 app.factory('TeaService', function($http) {
@@ -55,7 +57,10 @@ app.factory('TeaService', function($http) {
 		},
 		filter : function(data) {
 			return $http.post('/tea', data);
-		}
+		},
+		init : function() {
+			return $http.get('/tea/init');
+		},
 	};
 
 });
@@ -63,7 +68,7 @@ app.factory('TeaService', function($http) {
 // coffee -------------------------------------------------
 app.controller('coffeeController', function($scope, $http, CoffeeService) {
 
-	$scope.formData = {type: 'arabica', region: ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'], technology: 'powder', label: ['Lavazza', 'Starbucks'], price_at: 30, price_to: 50};
+	$scope.formData = {type: 'arabica', region: ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'], technology: 'powder', label: ['Lavazza', 'Starbucks'], price: { at: 28, to: 35 }};
 
 	CoffeeService.get()
 		.success(function(data) {
@@ -77,6 +82,10 @@ app.controller('coffeeController', function($scope, $http, CoffeeService) {
 			});
 	};
 
+	$scope.init = function() {
+		CoffeeService.init();
+	};
+
 });
 
 app.factory('CoffeeService', function($http) {
@@ -87,7 +96,10 @@ app.factory('CoffeeService', function($http) {
 		},
 		filter : function(data) {
 			return $http.post('/coffee', data);
-		}
+		},
+		init : function() {
+			return $http.get('/coffee/init');
+		},
 	};
 
 });

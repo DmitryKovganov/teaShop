@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.post('/init', function(req, res, next) {
+router.get('/init', function(req, res, next) {
 	var type = ['sinensis', 'assamica'];
 	var region = ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'];
 	var oxidation = ['green', 'black', 'white', 'yellow', 'oolong', 'puer'];
@@ -35,7 +35,7 @@ router.post('/init', function(req, res, next) {
 		});
 	}
 
-	req.send('init complete');
+	res.redirect('/');
 });
 
 // filter
@@ -43,14 +43,13 @@ router.post('/', function(req, res, next) {
 	var p = req.body;
 
 	Tea.find({
-			// type: 		{ $in: p.type }, 
-			// region: 	{ $in: p.region },
-			// oxidation: 	{ $in: p.oxidation },
-			// leaf: 		{ $in: p.leaf },
-			// label: 		{ $in: p.label },
-			// price: 		{ $gte: p.price_at, $lt: p.price_to}
-			$in: p
-	    }, 
+			type: 		{ $in: p.type }, 
+			region: 	{ $in: p.region },
+			oxidation: 	{ $in: p.oxidation },
+			leaf: 		{ $in: p.leaf },
+			label: 		{ $in: p.label },
+			price: 		{ $gte: p.price.at, $lt: p.price.to}
+	    },
 	    function(err, data) {
 	    if (err) {
 	        res.send(err)

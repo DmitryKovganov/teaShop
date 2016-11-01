@@ -1,33 +1,114 @@
-<!-- <input type="checkbox"> -->
-
-<!-- <button type="button" ng-click="useFilter()">Найти</button> -->
-
-
-<!-- <br/>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="button-group">
-				<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog">Размер листа</span> <span class="caret"></span></button>
-				<ul class="dropdown-menu">
-					<li><input type="checkbox"/>&nbsp;Крупный</li>
-					<li><input type="checkbox"/>&nbsp;Средний</li>
-					<li><input type="checkbox"/>&nbsp;Мелкий</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div> -->
-
 <div>Filter: {{ formData }}</div>
 
-<li><input type="checkbox" ng-model="formData.leaf['big']"/>Крупный</li>
-<li><input type="checkbox" ng-model="formData.leaf['middle']"/>Средний</li>
-<li><input type="checkbox" ng-model="formData.leaf['small']"/>Мелкий</li>
-
+<!-- <button type="button" ng-click="init()">Создать</button> -->
 <button type="button" ng-click="useFilter()">Найти</button>
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div><span>Тип</span>
+				<ul>						
+					<li><input type="checkbox" id="sinensis" value="sinensis" /><label for="sinensis">Китайская разновидность</label></li> 	
+					<li><input type="checkbox" id="assamica" value="assamica" /><label for="assamica">Ассамская разновидность</label></li> 	
+				</ul>
+			</div>
+
+			  <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Material Design Switch Demos</div>
+            
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Bootstrap Switch Default
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionDefault" class="label-default"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Bootstrap Switch Primary
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Bootstrap Switch Success
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess" class="label-success"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Bootstrap Switch Info
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionInfo" class="label-info"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Bootstrap Switch Warning
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionWarning" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionWarning" class="label-warning"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Bootstrap Switch Danger
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionDanger" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionDanger" class="label-danger"></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>            
+        </div>
+
+			<div><span>Регион</span>			
+				<ul>						
+					<li><input type="checkbox" id="Chinese" value="Chinese" /><label for="Chinese">Китайский</label></li> 	
+					<li><input type="checkbox" id="Indian" value="Indian" /><label for="Indian">Индийский</label></li> 	
+					<li><input type="checkbox" id="Ceylon" value="Ceylon" /><label for="Ceylon">Цейлонский</label></li> 	
+					<li><input type="checkbox" id="Japanese" value="Japanese" /><label for="Japanese">Японский</label></li> 	
+					<li><input type="checkbox" id="Indochina" value="Indochina" /><label for="Indochina">Индокитайский</label></li> 	
+					<li><input type="checkbox" id="African" value="African" /><label for="African">Африканский</label></li> 	
+					<li><input type="checkbox" id="Turkish" value="Turkish" /><label for="Turkish">Турецкий</label></li> 	
+					<li><input type="checkbox" id="Arabic" value="Arabic" /><label for="Arabic">Арабский</label></li> 	
+				</ul>
+			</div>		
+			<div><span>Степень окисления</span>
+				<ul>						
+					<li><input type="checkbox" id="green" value="green" /><label for="green">Зеленый</label></li> 	
+					<li><input type="checkbox" id="black" value="black" /><label for="black">Черный</label></li> 	
+					<li><input type="checkbox" id="white" value="white" /><label for="white">Белый</label></li> 	
+					<li><input type="checkbox" id="yellow" value="yellow" /><label for="yellow">Жёлтый</label></li> 	
+					<li><input type="checkbox" id="oolong" value="oolong" /><label for="oolong">Улун</label></li> 	
+					<li><input type="checkbox" id="puer" value="puer" /><label for="puer">Пуэр</label></li> 					
+				</ul>
+			</div>		
+			<div><span>Лист</span>
+				<ul>						
+					<li><input type="checkbox" id="big" value="big" /><label for="big">Крупный</label></li> 	
+					<li><input type="checkbox" id="middle" value="middle" /><label for="middle">Средний</label></li> 	
+					<li><input type="checkbox" id="small" value="small" /><label for="small">Мелкий</label></li> 								
+				</ul>
+			</div>
+			<div><span>Производитель</span>
+				<ul>						
+					<li><input type="checkbox" id="Lipton" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
+					<li><input type="checkbox" id="Dilmah" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
+					<li><input type="checkbox" id="Teabox" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
+					<li><input type="checkbox" id="Greenfield" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
+					<li><input type="checkbox" id="Earl Grey" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
+					<li><input type="checkbox" id="Akbar Tea" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
+				</ul>
+			</div>		
+		</div>
+		<div class="col-md-9">	<span ng-repeat="tea in teas">{{ tea }}</span></div>
+	</div>
+</div>
 
 <div>
-	<span ng-repeat="tea in teas">{{ tea }}</span>
+
 </div>
