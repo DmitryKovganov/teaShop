@@ -49,7 +49,7 @@ router.post('/', function(req, res, next) {
 			leaf: 		{ $in: p.leaf },
 			label: 		{ $in: p.label },
 			price: 		{ $gte: p.price.at, $lt: p.price.to}
-	    },
+	    }, 
 	    function(err, data) {
 	    if (err) {
 	        res.send(err)

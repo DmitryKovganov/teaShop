@@ -9,51 +9,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider   
         .state('tea', {
             url: '/tea',
-            templateUrl: './js/partial-tea.html',
+            templateUrl: './js/partials/partial-tea.html',
             controller: 'teaController'
         })
 
         .state('coffee', {
             url: '/coffee',
-            templateUrl: './js/partial-coffee.html',
+            templateUrl: './js/partials/partial-coffee.html',
             controller: 'coffeeController'
         })
         
 });
 
 app.controller('teaController', function($scope, $http, TeaService) {
+	$scope._data = {};
+	$scope._data.type = ['sinensis', 'assamica'];
+	$scope._data.region = ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'];
+	$scope._data.oxidation = ['green', 'black', 'white', 'yellow', 'oolong', 'puer'];
+	$scope._data.leaf = ['big', 'middle', 'small'];
+	$scope._data.label = ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'];
 
-	$scope.roles = [
-		// 'guest', 
-		// 'user', 
-		// 'customer', 
-		// 'admin'
-	];
-
-	$scope.formData = { type : ['sinensis', 'assamica'],
-		region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
-		oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
-		leaf : ['big', 'middle', 'small'],
-		label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'],
+	$scope.formData = { type : $scope._data.type,
+		region : $scope._data.region,
+		oxidation : $scope._data.oxidation,
+		leaf : $scope._data.leaf,
+		label : $scope._data.label,
 		price: { at: 28, to: 35 }
 	};
 
-	// $scope.checkFirst = function() {
-	// 	$scope.formData.type.splice(0, $scope.formData.type.length); 
-	// 	$scope.formData.region.splice(0, $scope.formData.region.length); 
-	// 	$scope.formData.oxidation.splice(0, $scope.formData.oxidation.length); 
-	// 	$scope.formData.leaf.splice(0, $scope.formData.leaf.length); 
-	// 	$scope.formData.label.splice(0, $scope.formData.label.length);
-	// 	// $scope.user.roles.push('guest');
-	// };
+	$scope.uncheckAll = function(prop) {
+		$scope.formData[prop] = [];
+	};
 
-	// $scope.formData = { type : ['sinensis', 'assamica'],
-	// 	region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
-	// 	oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
-	// 	leaf : ['big', 'middle', 'small'],
-	// 	label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'],
-	// 	price: { at: 28, to: 35 }
-	// };
+	$scope.checkAll = function(prop) {
+		$scope.formData[prop] = angular.copy($scope._data[prop]);
+	};
 
 	TeaService.get()
 		.success(function(data) {

@@ -8,7 +8,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
+			<!-- <div><input type="checkbox" ng-click="uncheckAll('type')" /><label>Тип</label> -->
 			<div><span>Тип</span>
+				<button type="button" ng-click="uncheckAll('type')">Снять все</button>
+				<button type="button" ng-click="checkAll('type')">Выделить все</button>
+
 				<ul>						
 					<li><input type="checkbox" id="sinensis" checklist-model="formData.type" value="sinensis" /><label for="sinensis">Китайская разновидность</label></li> 	
 					<li><input type="checkbox" id="assamica" checklist-model="formData.type" value="assamica" /><label for="assamica">Ассамская разновидность</label></li> 	
@@ -37,6 +41,35 @@
 					<li><input type="checkbox" id="puer" checklist-model="formData.oxidation" value="puer" /><label for="puer">Пуэр</label></li> 					
 				</ul>
 			</div>		
+
+
+        </div>
+
+			
+		<div><span>Лист</span>
+			<ul>						
+				<li><input type="checkbox" id="big" checklist-model="formData.leaf" value="big" /><label for="big">Крупный</label></li> 	
+				<li><input type="checkbox" id="middle" checklist-model="formData.leaf" value="middle" /><label for="middle">Средний</label></li> 	
+				<li><input type="checkbox" id="small" checklist-model="formData.leaf" value="small" /><label for="small">Мелкий</label></li> 								
+			</ul>
+		</div>
+		<div><span>Производитель</span>
+			<ul>						
+				<li><input type="checkbox" id="Lipton" checklist-model="formData.label" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
+				<li><input type="checkbox" id="Dilmah" checklist-model="formData.label" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
+				<li><input type="checkbox" id="Teabox" checklist-model="formData.label" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
+				<li><input type="checkbox" id="Greenfield" checklist-model="formData.label" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
+				<li><input type="checkbox" id="Earl Grey" checklist-model="formData.label" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
+				<li><input type="checkbox" id="Akbar Tea" checklist-model="formData.label" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
+			</ul>
+		</div>		
+	</div>
+
+
+	<div class="col-md-9">	<span ng-repeat="tea in teas">{{ tea }}</span></div>
+
+
+</div>
 
 							<!-- <div class="panel panel-default">
 							<div class="panel-heading">Material Design Switch Demos</div>
@@ -85,31 +118,4 @@
 							        </div>
 							    </li>
 							</ul>
-							</div>             -->
-        </div>
-
-			
-		<div><span>Лист</span>
-			<ul>						
-				<li><input type="checkbox" id="big" checklist-model="formData.leaf" value="big" /><label for="big">Крупный</label></li> 	
-				<li><input type="checkbox" id="middle" checklist-model="formData.leaf" value="middle" /><label for="middle">Средний</label></li> 	
-				<li><input type="checkbox" id="small" checklist-model="formData.leaf" value="small" /><label for="small">Мелкий</label></li> 								
-			</ul>
-		</div>
-		<div><span>Производитель</span>
-			<ul>						
-				<li><input type="checkbox" id="Lipton" checklist-model="formData.label" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
-				<li><input type="checkbox" id="Dilmah" checklist-model="formData.label" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
-				<li><input type="checkbox" id="Teabox" checklist-model="formData.label" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
-				<li><input type="checkbox" id="Greenfield" checklist-model="formData.label" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
-				<li><input type="checkbox" id="Earl Grey" checklist-model="formData.label" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
-				<li><input type="checkbox" id="Akbar Tea" checklist-model="formData.label" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
-			</ul>
-		</div>		
-	</div>
-
-
-		<div class="col-md-9">	<span ng-repeat="tea in teas">{{ tea }}</span></div>
-
-
-</div>
+							</div>            
