@@ -1,6 +1,6 @@
 // angular.module('myShop', ['mainController', 'mainService']);
 
-var app = angular.module('myShop', ['ui.router']);
+var app = angular.module('myShop', ['ui.router', 'checklist-model']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
     
@@ -23,6 +23,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('teaController', function($scope, $http, TeaService) {
 
+	$scope.roles = [
+		// 'guest', 
+		// 'user', 
+		// 'customer', 
+		// 'admin'
+	];
+
 	$scope.formData = { type : ['sinensis', 'assamica'],
 		region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
 		oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
@@ -30,6 +37,23 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'],
 		price: { at: 28, to: 35 }
 	};
+
+	// $scope.checkFirst = function() {
+	// 	$scope.formData.type.splice(0, $scope.formData.type.length); 
+	// 	$scope.formData.region.splice(0, $scope.formData.region.length); 
+	// 	$scope.formData.oxidation.splice(0, $scope.formData.oxidation.length); 
+	// 	$scope.formData.leaf.splice(0, $scope.formData.leaf.length); 
+	// 	$scope.formData.label.splice(0, $scope.formData.label.length);
+	// 	// $scope.user.roles.push('guest');
+	// };
+
+	// $scope.formData = { type : ['sinensis', 'assamica'],
+	// 	region : ['Chinese', 'Indian', 'Ceylon', 'Japanese', 'Indochina', 'African', 'Turkish', 'Arabic'],
+	// 	oxidation : ['green', 'black', 'white', 'yellow', 'oolong', 'puer'],
+	// 	leaf : ['big', 'middle', 'small'],
+	// 	label : ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'],
+	// 	price: { at: 28, to: 35 }
+	// };
 
 	TeaService.get()
 		.success(function(data) {
