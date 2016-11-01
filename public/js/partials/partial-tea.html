@@ -1,16 +1,26 @@
 <!-- <button type="button" ng-click="init()">Создать</button> -->
-<button type="button" ng-click="useFilter()">Найти</button>
+<script>
+  $( function() {
+    $( "#slider-range" ).slider();
+  } );
+  </script>
 
+	<div>
+		<p>
+			<label for="amount">Диапазон стоимости:  </label>
+			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		</p>
 
-<div>Filter: {{ formData }}</div>
+		<div id="slider-range"></div>
+	</div>
 
 
 <div class="container">
+
 	<div class="row">
+		<!-- <div><input type="checkbox" ng-click="uncheckAll('type')" /><label>Тип</label> -->
 		<div class="col-md-3">
-			<!-- <div><input type="checkbox" ng-click="uncheckAll('type')" /><label>Тип</label> -->
-			<div><span>Тип</span>
-				<button type="button" ng-click="uncheckAll('type')">Снять все</button>
+			<div><strong>Тип</strong>
 				<button type="button" ng-click="checkAll('type')">Выделить все</button>
 
 				<ul>						
@@ -19,7 +29,23 @@
 				</ul>
 			</div>
 
-			<div><span>Регион</span>			
+			<div><strong>Лист</strong>
+				<button type="button" ng-click="checkAll('leaf')">Выделить все</button>
+
+				<ul>						
+					<li><input type="checkbox" id="big" checklist-model="formData.leaf" value="big" /><label for="big">Крупный</label></li> 	
+					<li><input type="checkbox" id="middle" checklist-model="formData.leaf" value="middle" /><label for="middle">Средний</label></li> 	
+					<li><input type="checkbox" id="small" checklist-model="formData.leaf" value="small" /><label for="small">Мелкий</label></li> 								
+				</ul>
+			</div>
+
+			<button type="button" ng-click="useFilter()">Найти</button>
+		</div>
+
+		<div class="col-md-3">
+			<div><strong>Регион</strong>
+				<button type="button" ng-click="checkAll('region')">Выделить все</button>
+
 				<ul>						
 					<li><input type="checkbox" id="Chinese" checklist-model="formData.region" value="Chinese" /><label for="Chinese">Китайский</label></li> 	
 					<li><input type="checkbox" id="Indian" checklist-model="formData.region" value="Indian" /><label for="Indian">Индийский</label></li> 	
@@ -31,7 +57,12 @@
 					<li><input type="checkbox" id="Arabic" checklist-model="formData.region" value="Arabic" /><label for="Arabic">Арабский</label></li> 	
 				</ul>
 			</div>		
-			<div><span>Степень окисления</span>
+		</div>
+
+		<div class="col-md-3">
+			<div><strong>Степень окисления</strong>
+				<button type="button" ng-click="checkAll('oxidation')">Выделить все</button>
+
 				<ul>						
 					<li><input type="checkbox" id="green" checklist-model="formData.oxidation" value="green" /><label for="green">Зеленый</label></li> 	
 					<li><input type="checkbox" id="black" checklist-model="formData.oxidation" value="black" /><label for="black">Черный</label></li> 	
@@ -40,34 +71,28 @@
 					<li><input type="checkbox" id="oolong" checklist-model="formData.oxidation" value="oolong" /><label for="oolong">Улун</label></li> 	
 					<li><input type="checkbox" id="puer" checklist-model="formData.oxidation" value="puer" /><label for="puer">Пуэр</label></li> 					
 				</ul>
-			</div>		
+			</div>	
+		</div>	
 
+		<div class="col-md-3">
+			<div><strong>Производитель</strong>
+				<button type="button" ng-click="checkAll('label')">Выделить все</button>
 
-        </div>
-
-			
-		<div><span>Лист</span>
-			<ul>						
-				<li><input type="checkbox" id="big" checklist-model="formData.leaf" value="big" /><label for="big">Крупный</label></li> 	
-				<li><input type="checkbox" id="middle" checklist-model="formData.leaf" value="middle" /><label for="middle">Средний</label></li> 	
-				<li><input type="checkbox" id="small" checklist-model="formData.leaf" value="small" /><label for="small">Мелкий</label></li> 								
-			</ul>
-		</div>
-		<div><span>Производитель</span>
-			<ul>						
-				<li><input type="checkbox" id="Lipton" checklist-model="formData.label" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
-				<li><input type="checkbox" id="Dilmah" checklist-model="formData.label" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
-				<li><input type="checkbox" id="Teabox" checklist-model="formData.label" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
-				<li><input type="checkbox" id="Greenfield" checklist-model="formData.label" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
-				<li><input type="checkbox" id="Earl Grey" checklist-model="formData.label" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
-				<li><input type="checkbox" id="Akbar Tea" checklist-model="formData.label" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
-			</ul>
-		</div>		
+				<ul>						
+					<li><input type="checkbox" id="Lipton" checklist-model="formData.label" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
+					<li><input type="checkbox" id="Dilmah" checklist-model="formData.label" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
+					<li><input type="checkbox" id="Teabox" checklist-model="formData.label" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
+					<li><input type="checkbox" id="Greenfield" checklist-model="formData.label" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
+					<li><input type="checkbox" id="Earl Grey" checklist-model="formData.label" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
+					<li><input type="checkbox" id="Akbar Tea" checklist-model="formData.label" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
+				</ul>
+			</div>	
+		</div>	
 	</div>
 
+	
 
-	<div class="col-md-9">	<span ng-repeat="tea in teas">{{ tea }}</span></div>
-
+	<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
 
 </div>
 

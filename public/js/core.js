@@ -37,12 +37,13 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		price: { at: 28, to: 35 }
 	};
 
-	$scope.uncheckAll = function(prop) {
-		$scope.formData[prop] = [];
-	};
-
 	$scope.checkAll = function(prop) {
-		$scope.formData[prop] = angular.copy($scope._data[prop]);
+		if ($scope.formData[prop].length != $scope._data[prop].length) {
+			$scope.formData[prop] = angular.copy($scope._data[prop]);
+		}
+		else {
+			$scope.formData[prop] = [];
+		}
 	};
 
 	TeaService.get()
