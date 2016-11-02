@@ -29,30 +29,33 @@ app.controller('teaController', function($scope, $http, TeaService) {
 	$scope._data.leaf = ['big', 'middle', 'small'];
 	$scope._data.label = ['Lipton', 'Dilmah', 'Teabox', 'Greenfield', 'Earl Grey', 'Akbar Tea'];
 
-	$scope.formData = { type : $scope._data.type,
-		region : $scope._data.region,
-		oxidation : $scope._data.oxidation,
-		leaf : $scope._data.leaf,
-		label : $scope._data.label,
+	$scope.formData = { type : angular.copy($scope._data.type),
+		region : angular.copy($scope._data.region),
+		oxidation : angular.copy($scope._data.oxidation),
+		leaf : angular.copy($scope._data.leaf),
+		label : angular.copy($scope._data.label),
 		price: { at: 28, to: 35 }
 	};
 
 	$scope.checkAll = function(prop) {
-		if ($scope.formData[prop].length != $scope._data[prop].length) {
-			$scope.formData[prop] = angular.copy($scope._data[prop]);
-		}
-		else {
-			$scope.formData[prop] = [];
-		}
-	};
+		$scope.formData[prop] = angular.copy($scope._data[prop]);
+	}
+
+	$scope.uncheckAll = function(prop) {
+		$scope.formData[prop] = []; 
+	}
 
 	TeaService.get()
 		.success(function(data) {
 			$scope.teas = data;
 		});
 
-	$scope.useFilter = function() {
-		TeaService.filter($scope.formData)
+	$scope.useFilter = function(index) {
+		var params = {};
+		params.filter = $scope.formData;
+		params.index = index;
+		
+		TeaService.filter(params)
 			.success(function(data) {
 				$scope.teas = data;
 			});

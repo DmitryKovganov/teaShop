@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Tea = require('../models/tea');
+var limitOnPage = 12;
 
 // get all
 router.get('/', function(req, res, next) {
@@ -40,23 +41,45 @@ router.get('/init', function(req, res, next) {
 
 // filter
 router.post('/', function(req, res, next) {
-	var p = req.body;
+	var p = req.body.filter;
+	console.log(req.body.index)
+	// Tea.find({
+	// 		type: 		{ $in: p.type }, 
+	// 		region: 	{ $in: p.region },
+	// 		oxidation: 	{ $in: p.oxidation },
+	// 		leaf: 		{ $in: p.leaf },
+	// 		label: 		{ $in: p.label },
+	// 		price: 		{ $gte: p.price.at, $lt: p.price.to}
+	//     }, 
+	//     function(err, data) {
+	//     if (err) {
+	//         res.send(err)
+	//     }
 
-	Tea.find({
-			type: 		{ $in: p.type }, 
-			region: 	{ $in: p.region },
-			oxidation: 	{ $in: p.oxidation },
-			leaf: 		{ $in: p.leaf },
-			label: 		{ $in: p.label },
-			price: 		{ $gte: p.price.at, $lt: p.price.to}
-	    }, 
-	    function(err, data) {
+	//     res.json(data);
+	// });
+
+    var callback = function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }
 
 	    res.json(data);
-	});
+	};
+
+	Tea.find({
+		type: 		{ $in: p.type }, 
+		region: 	{ $in: p.region },
+		oxidation: 	{ $in: p.oxidation },
+		leaf: 		{ $in: p.leaf },
+		label: 		{ $in: p.label },
+		price: 		{ $gte: p.price.at, $lt: p.price.to}
+    })
+    .skip(req.body.index * limitOnPage)
+    .limit(limitOnPage)
+	.exec(callback);
+
+
 });
 
 module.exports = router;
