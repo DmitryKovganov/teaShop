@@ -37,6 +37,8 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		price: { at: 28, to: 35 }
 	};
 
+	$scope.index = 1;
+
 	$scope.checkAll = function(prop) {
 		$scope.formData[prop] = angular.copy($scope._data[prop]);
 	}
@@ -50,10 +52,13 @@ app.controller('teaController', function($scope, $http, TeaService) {
 			$scope.teas = data;
 		});
 
-	$scope.useFilter = function(index) {
+	$scope.useFilter = function(direction) {
 		var params = {};
 		params.filter = $scope.formData;
-		params.index = index;
+		if ($scope.index + parseInt(direction) > 0) {
+			$scope.index += parseInt(direction);
+			params.index = $scope.index - 1; // тк начало индексирования с 1, а смещение начальное 0
+		}
 		
 		TeaService.filter(params)
 			.success(function(data) {
