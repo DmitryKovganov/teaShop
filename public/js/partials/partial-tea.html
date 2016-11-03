@@ -36,9 +36,17 @@
 				rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
 	</article>
 
+	<article>
+		<button type="button" ng-click="useFilter('0')">Найти</button>
+		<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+		<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+		<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+		<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+		<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+	</article>
 
 <!-- SELECT -->
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-3">
 			<div><strong>Тип</strong>
 				<button type="button" ng-click="checkAll('type')">Отметить</button>
@@ -112,7 +120,7 @@
 				</ul>
 			</div>	
 		</div>	
-	</div>
+	</div> -->
 
 	
 
