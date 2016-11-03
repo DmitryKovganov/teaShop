@@ -6,14 +6,44 @@ var limitOnPage = 12;
 
 // get all
 router.get('/', function(req, res, next) {
-
-	Tea.find(function(err, data) {
+	var callback = function(err, data) {
 	    if (err) {
 	        res.send(err)
 	    }
 	    
 	    res.json(data);
-	});
+	};
+
+	Tea.find()
+	.limit(limitOnPage)
+	.exec(callback);
+});
+
+
+
+// filter
+router.post('/', function(req, res, next) {
+	var p = req.body.filter;
+
+    var callback = function(err, data) {
+	    if (err) {
+	        res.send(err)
+	    }
+
+	    res.json(data);
+	};
+
+	Tea.find({
+		type: 		{ $in: p.type }, 
+		region: 	{ $in: p.region },
+		oxidation: 	{ $in: p.oxidation },
+		leaf: 		{ $in: p.leaf },
+		label: 		{ $in: p.label },
+		price: 		{ $gte: p.price.at, $lt: p.price.to}
+    })
+    .skip(req.body.index * limitOnPage)
+    .limit(limitOnPage)
+	.exec(callback);
 });
 
 router.get('/init', function(req, res, next) {
@@ -37,49 +67,6 @@ router.get('/init', function(req, res, next) {
 	}
 
 	res.redirect('/');
-});
-
-// filter
-router.post('/', function(req, res, next) {
-	var p = req.body.filter;
-	console.log(req.body.index)
-	// Tea.find({
-	// 		type: 		{ $in: p.type }, 
-	// 		region: 	{ $in: p.region },
-	// 		oxidation: 	{ $in: p.oxidation },
-	// 		leaf: 		{ $in: p.leaf },
-	// 		label: 		{ $in: p.label },
-	// 		price: 		{ $gte: p.price.at, $lt: p.price.to}
-	//     }, 
-	//     function(err, data) {
-	//     if (err) {
-	//         res.send(err)
-	//     }
-
-	//     res.json(data);
-	// });
-
-    var callback = function(err, data) {
-	    if (err) {
-	        res.send(err)
-	    }
-
-	    res.json(data);
-	};
-
-	Tea.find({
-		type: 		{ $in: p.type }, 
-		region: 	{ $in: p.region },
-		oxidation: 	{ $in: p.oxidation },
-		leaf: 		{ $in: p.leaf },
-		label: 		{ $in: p.label },
-		price: 		{ $gte: p.price.at, $lt: p.price.to}
-    })
-    .skip(req.body.index * limitOnPage)
-    .limit(limitOnPage)
-	.exec(callback);
-
-
 });
 
 module.exports = router;

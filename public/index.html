@@ -1,62 +1,45 @@
-<!-- index.html -->
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="myShop">
 <head>
-    <!-- META -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Tea Shop</title>
+<!-- CSS -->            
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css">
-    
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/rzslider.min.css">
 
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-    <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
+<!-- JS -->       
     <script type="text/javascript" src="./js/libs/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="./js/libs/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="./js/libs/checklist-model.js"></script>
 
-    <script src="./js/core.js"></script>
+    <script type="text/javascript" src="./js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/libs/bootstrap-select.min.js"></script>
+
+    <script type="text/javascript" src="./js/libs/angular.min.js"></script>
+    <script type="text/javascript" src="./js/libs/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="./js/libs/rzslider.min.js"></script>
+    <script type="text/javascript" src="./js/libs/checklist-model.js"></script>
+    <!-- <script type="text/javascript" src="./js/libs/angular-bootstrap-multiselect.min.js"></script> -->
+
+    <script type="text/javascript" src="./js/core.js"></script>
 
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
     <nav class="navbar navbar-inverse" role="navigation">
-<!--         <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="#">AngularUI Router</a>
-        </div> -->
         <ul class="nav navbar-nav">
-            <!-- <li><a ui-sref="Home">Home</a></li> -->
             <li><a ui-sref="tea">Tea</a></li>
             <li><a ui-sref="coffee">Coffee</a></li>
         </ul>
     </nav>
 
-<!--     <btn><a ui-sref="tea">tea</a></btn>
-    <btn><a ui-sref="coffee">coffee</a></btn> -->
-
-    <!-- MAIN CONTENT -->
     <div class="container">
-
-        <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
         <div ui-view></div>
-
     </div>
-
-<!--     <btn><a href="/tea">tea</a></btn>
-    <btn><a href="/coffee">coffee</a></btn> -->
 
 </body>
 </html>

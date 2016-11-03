@@ -1,62 +1,43 @@
 <!-- <button type="button" ng-click="init()">Создать</button> -->
-<script>
-	// $( function() {
-	// 	// $( "#slider-range" ).slider();
-	// 	$('#demo').pagination({
-	// 		dataSource: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-	// 		pageSize: 2,
-	// 		showPrevious: false,
-	// 		showNext: false,
-	// 		callback: function(data, pagination) {
-	// 		    // template method of yourself
-	// 		    var html = template(data);
-	// 		    dataContainer.html(html);
-	// 		}
-	// 	});
-	// });
-	
-</script>
-
-<!-- <div id="demo">
-	<div class="data-container"></div>
-</div> -->
-
-<!-- 	<div>
-		<p>
-			<label for="amount">Диапазон стоимости:  </label>
-			<input type="text" id="amount" readonly>
-		</p>
-
-		<div id="slider-range"></div>
-	</div> -->
-
-<!-- <ul class="pagination">
-  <li ><a ng-click="useFilter('0')">1</a></li>
-  <li><a ng-click="useFilter('1')">2</a></li>
-  <li><a ng-click="useFilter('2')">3</a></li>
-  <li><a ng-click="useFilter('3')">4</a></li>
-  <li><a ng-click="useFilter('4')">5</a></li>
-</ul> -->
-
 
 <div class="container">
 
-	<ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" ng-click="useFilter('-1')" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-	<li class="active"><a>{{ index }}</a></li>
-    <li class="page-item">
-      <a class="page-link" ng-click="useFilter('1')" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
+<!-- PAGINATOR -->
+	<article>
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" ng-click="useFilter('-1')" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
+			</a>
+			</li>
 
+			<li class="active"><a>{{ index }}</a></li>
+
+			<li class="page-item">
+				<a class="page-link" ng-click="useFilter('1')" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+				</a>
+			</li>
+		</ul>
+	</article>
+
+
+<!-- SLIDER -->
+	<article>
+		Min Value:
+		<input type="number" ng-model="slider.minValue" />
+		<br/>Max Value:
+		<input type="number" ng-model="slider.maxValue"  />
+		<br/>
+		<rzslider rz-slider-model="slider.minValue"
+				rz-slider-high="slider.maxValue"
+				rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
+	</article>
+
+
+<!-- SELECT -->
 	<div class="row">
 		<div class="col-md-3">
 			<div><strong>Тип</strong>
@@ -79,7 +60,7 @@
 				</ul>
 			</div>
 
-			<button type="button" ng-click="useFilter()">Найти</button>
+			<button type="button" ng-click="useFilter('0')">Найти</button>
 		</div>
 
 		<div class="col-md-3">
@@ -137,57 +118,4 @@
 
 	<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
 
-</div>
-
-
-
-
-
-<!-- <div class="panel panel-default">
-<div class="panel-heading">Material Design Switch Demos</div>
-
-<ul class="list-group">
-    <li class="list-group-item">
-        Bootstrap Switch Default
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionDefault" class="label-default"></label>
-        </div>
-    </li>
-    <li class="list-group-item">
-        Bootstrap Switch Primary
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionPrimary" class="label-primary"></label>
-        </div>
-    </li>
-    <li class="list-group-item">
-        Bootstrap Switch Success
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionSuccess" class="label-success"></label>
-        </div>
-    </li>
-    <li class="list-group-item">
-        Bootstrap Switch Info
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionInfo" class="label-info"></label>
-        </div>
-    </li>
-    <li class="list-group-item">
-        Bootstrap Switch Warning
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionWarning" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionWarning" class="label-warning"></label>
-        </div>
-    </li>
-    <li class="list-group-item">
-        Bootstrap Switch Danger
-        <div class="material-switch pull-right">
-            <input id="someSwitchOptionDanger" name="someSwitchOption001" type="checkbox"/>
-            <label for="someSwitchOptionDanger" class="label-danger"></label>
-        </div>
-    </li>
-</ul>
-</div>            
+</div>       
