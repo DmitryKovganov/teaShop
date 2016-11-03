@@ -23,27 +23,38 @@
 		</ul>
 	</article>
 
-
 <!-- SLIDER -->
-	<article>
-		Min Value:
-		<input type="number" ng-model="slider.minValue" />
-		<br/>Max Value:
-		<input type="number" ng-model="slider.maxValue"  />
-		<br/>
-		<rzslider rz-slider-model="slider.minValue"
-				rz-slider-high="slider.maxValue"
-				rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
-	</article>
 
-	<article>
-		<button type="button" ng-click="useFilter('0')">Найти</button>
-		<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-		<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-		<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-		<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-		<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-	</article>
+<div class="row">
+	<div class="col-md-3">
+		<article>
+			Min Value:
+			<input type="number" ng-model="slider.minValue" />
+			<br/>Max Value:
+			<input type="number" ng-model="slider.maxValue"  />
+			<br/>
+			<rzslider rz-slider-model="slider.minValue"
+					rz-slider-high="slider.maxValue"
+					rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
+		</article>
+
+		<article>
+			<button type="button" ng-click="useFilter('0')">Найти</button>
+			<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+			<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+			<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+			<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+			<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+		</article>
+	</div>
+
+	<div class="col-md-9">
+		<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
+	</div>
+	
+</div>
+
+	
 
 <!-- SELECT -->
 	<!-- <div class="row">
@@ -124,6 +135,6 @@
 
 	
 
-	<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
+	
 
 </div>       

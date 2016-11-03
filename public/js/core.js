@@ -22,17 +22,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 app.controller('teaController', function($scope, $http, TeaService) {
-	$scope.selection = {};
-
 	$scope.slider = {
-	    minValue: 0,
-	    maxValue: 70,
+	    minValue: 10,
+	    maxValue: 40,
 	    options: {
 	        floor: 0,
 	        ceil: 100,
-	        showTicksValues: 10,
-	        step: 1,
-	        minRange: 3,
+	        showTicksValues: 20,
+	        step: 5,
+	        minRange: 20,
         	pushRange: true,
 	        noSwitching: true,
 	        draggableRange: true,
@@ -180,7 +178,7 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		oxidation : angular.copy($scope._data.oxidation),
 		leaf : angular.copy($scope._data.leaf),
 		label : angular.copy($scope._data.label),
-		price: { }
+		price: {}
 	};
 
 	$scope.index = 1;
@@ -193,13 +191,13 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		$scope.formData.price.to = v;
 	});
 
-	// $scope.checkAll = function(prop) {
-	// 	$scope.formData[prop] = angular.copy($scope._data[prop]);
-	// }
+	$scope.$watchCollection('formData', function(v){
+		$scope.useFilter(0);
+	});
 
-	// $scope.uncheckAll = function(prop) {
-	// 	$scope.formData[prop] = []; 
-	// }
+	$scope.$watchCollection('formData.price', function(v){
+		$scope.useFilter(0);
+	});
 
 	$scope.setData = function() {
 		return { 
