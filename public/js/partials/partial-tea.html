@@ -25,116 +25,32 @@
 
 <!-- SLIDER -->
 
-<div class="row">
-	<div class="col-md-3">
-		<article>
-			Min Value:
-			<input type="number" ng-model="slider.minValue" />
-			<br/>Max Value:
-			<input type="number" ng-model="slider.maxValue"  />
-			<br/>
-			<rzslider rz-slider-model="slider.minValue"
-					rz-slider-high="slider.maxValue"
-					rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
-		</article>
-
-		<article>
-			<button type="button" ng-click="useFilter('0')">Найти</button>
-			<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-			<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-			<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-			<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-			<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-		</article>
-	</div>
-
-	<div class="col-md-9">
-		<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
-	</div>
-	
-</div>
-
-	
-
-<!-- SELECT -->
-	<!-- <div class="row">
+	<div class="row">
 		<div class="col-md-3">
-			<div><strong>Тип</strong>
-				<button type="button" ng-click="checkAll('type')">Отметить</button>
-				<button type="button" ng-click="uncheckAll('type')">Снять</button>
-				<ul>						
-					<li><input type="checkbox" id="sinensis" checklist-model="formData.type" value="sinensis" /><label for="sinensis">Китайская разновидность</label></li> 	
-					<li><input type="checkbox" id="assamica" checklist-model="formData.type" value="assamica" /><label for="assamica">Ассамская разновидность</label></li> 	
-				</ul>
-			</div>
+			<article>
+				Min Value:
+				<input type="number" ng-model="slider.minValue" />
+				<br/>Max Value:
+				<input type="number" ng-model="slider.maxValue"  />
+				<br/>
+				<rzslider rz-slider-model="slider.minValue"
+						rz-slider-high="slider.maxValue"
+						rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
+			</article>
 
-			<div><strong>Лист</strong>
-				<button type="button" ng-click="checkAll('leaf')">Отметить</button>
-				<button type="button" ng-click="uncheckAll('leaf')">Снять</button>
-
-				<ul>						
-					<li><input type="checkbox" id="big" checklist-model="formData.leaf" value="big" /><label for="big">Крупный</label></li> 	
-					<li><input type="checkbox" id="middle" checklist-model="formData.leaf" value="middle" /><label for="middle">Средний</label></li> 	
-					<li><input type="checkbox" id="small" checklist-model="formData.leaf" value="small" /><label for="small">Мелкий</label></li> 								
-				</ul>
-			</div>
-
-			<button type="button" ng-click="useFilter('0')">Найти</button>
+			<article>
+				<button type="button" ng-click="useFilter('0')">Найти</button>
+				<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+				<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+				<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+				<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+				<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+			</article>
 		</div>
 
-		<div class="col-md-3">
-			<div><strong>Регион</strong>
-				<button type="button" ng-click="checkAll('region')">Отметить</button>
-				<button type="button" ng-click="uncheckAll('region')">Снять</button>
-
-				<ul>						
-					<li><input type="checkbox" id="Chinese" checklist-model="formData.region" value="Chinese" /><label for="Chinese">Китайский</label></li> 	
-					<li><input type="checkbox" id="Indian" checklist-model="formData.region" value="Indian" /><label for="Indian">Индийский</label></li> 	
-					<li><input type="checkbox" id="Ceylon" checklist-model="formData.region" value="Ceylon" /><label for="Ceylon">Цейлонский</label></li> 	
-					<li><input type="checkbox" id="Japanese" checklist-model="formData.region" value="Japanese" /><label for="Japanese">Японский</label></li> 	
-					<li><input type="checkbox" id="Indochina" checklist-model="formData.region" value="Indochina" /><label for="Indochina">Индокитайский</label></li> 	
-					<li><input type="checkbox" id="African" checklist-model="formData.region" value="African" /><label for="African">Африканский</label></li> 	
-					<li><input type="checkbox" id="Turkish" checklist-model="formData.region" value="Turkish" /><label for="Turkish">Турецкий</label></li> 	
-					<li><input type="checkbox" id="Arabic" checklist-model="formData.region" value="Arabic" /><label for="Arabic">Арабский</label></li> 	
-				</ul>
-			</div>		
+		<div class="col-md-9">
+			<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
 		</div>
-
-		<div class="col-md-3">
-			<div><strong>Степень окисления</strong>
-				<button type="button" ng-click="checkAll('oxidation')">Отметить</button>
-				<button type="button" ng-click="uncheckAll('oxidation')">Снять</button>
-
-				<ul>						
-					<li><input type="checkbox" id="green" checklist-model="formData.oxidation" value="green" /><label for="green">Зеленый</label></li> 	
-					<li><input type="checkbox" id="black" checklist-model="formData.oxidation" value="black" /><label for="black">Черный</label></li> 	
-					<li><input type="checkbox" id="white" checklist-model="formData.oxidation" value="white" /><label for="white">Белый</label></li> 	
-					<li><input type="checkbox" id="yellow" checklist-model="formData.oxidation" value="yellow" /><label for="yellow">Жёлтый</label></li> 	
-					<li><input type="checkbox" id="oolong" checklist-model="formData.oxidation" value="oolong" /><label for="oolong">Улун</label></li> 	
-					<li><input type="checkbox" id="puer" checklist-model="formData.oxidation" value="puer" /><label for="puer">Пуэр</label></li> 					
-				</ul>
-			</div>	
-		</div>	
-
-		<div class="col-md-3">
-			<div><strong>Производитель</strong>
-				<button type="button" ng-click="checkAll('label')">Отметить</button>
-				<button type="button" ng-click="uncheckAll('label')">Снять</button>
-
-				<ul>						
-					<li><input type="checkbox" id="Lipton" checklist-model="formData.label" value="Lipton" /><label for="Lipton">Lipton</label></li> 	
-					<li><input type="checkbox" id="Dilmah" checklist-model="formData.label" value="Dilmah" /><label for="Dilmah">Dilmah</label></li> 	
-					<li><input type="checkbox" id="Teabox" checklist-model="formData.label" value="Teabox" /><label for="Teabox">Teabox</label></li> 	
-					<li><input type="checkbox" id="Greenfield" checklist-model="formData.label" value="Greenfield" /><label for="Greenfield">Greenfield</label></li> 	
-					<li><input type="checkbox" id="Earl Grey" checklist-model="formData.label" value="Earl Grey" /><label for="Earl Grey">Earl Grey</label></li> 	
-					<li><input type="checkbox" id="Akbar Tea" checklist-model="formData.label" value="Akbar Tea" /><label for="Akbar Tea">Akbar Tea</label></li> 					
-				</ul>
-			</div>	
-		</div>	
-	</div> -->
-
-	
-
-	
-
+		
+	</div>
 </div>       

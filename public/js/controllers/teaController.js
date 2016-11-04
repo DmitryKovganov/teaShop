@@ -1,27 +1,10 @@
-// angular.module('myShop', ['mainController', 'mainService']);
+angular
+	.module('myShop')
+	.controller('teaController', teaController);
 
-var app = angular.module('myShop', ['ui.router', 'rzModule', 'btorfs.multiselect']);
+teaController.$inject = ['$scope', '$http', 'teaService'];
 
-app.config(function($stateProvider, $urlRouterProvider) {
-    
-    $urlRouterProvider.otherwise('/');
-    
-    $stateProvider   
-        .state('tea', {
-            url: '/tea',
-            templateUrl: './js/partials/partial-tea.html',
-            controller: 'teaController'
-        })
-
-        .state('coffee', {
-            url: '/coffee',
-            templateUrl: './js/partials/partial-coffee.html',
-            controller: 'coffeeController'
-        })
-        
-});
-
-app.controller('teaController', function($scope, $http, TeaService) {
+function teaController($scope, $http, teaService) {
 	$scope.slider = {
 	    minValue: 10,
 	    maxValue: 40,
@@ -230,79 +213,23 @@ app.controller('teaController', function($scope, $http, TeaService) {
 		var params = {};
 		params.filter = $scope.setData();
 		params.index = $scope.setIndex(direction);
-		console.log(params);
 		return params;
 	}
 
-	TeaService.get()
+	teaService.get()
 		.success(function(data) {
 			$scope.teas = data;
 		});
 
 	$scope.useFilter = function(direction) {
-		TeaService.filter($scope.setParams(direction))
+		teaService.filter($scope.setParams(direction))
 			.success(function(data) {
 				$scope.teas = data;
 			});
 	};
 
 	$scope.init = function() {
-		TeaService.init();
+		teaService.init();
 	};
 
-});
-
-app.factory('TeaService', function($http) {
-
-	return {
-		get : function() {
-			return $http.get('/tea');
-		},
-		filter : function(data) {
-			return $http.post('/tea', data);
-		},
-		init : function() {
-			return $http.get('/tea/init');
-		},
-	};
-
-});
-
-// coffee -------------------------------------------------
-app.controller('coffeeController', function($scope, $http, CoffeeService) {
-
-	$scope.formData = {type: 'arabica', region: ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'], technology: 'powder', label: ['Lavazza', 'Starbucks'], price: { at: 28, to: 35 }};
-
-	CoffeeService.get()
-		.success(function(data) {
-			$scope.coffees = data;
-		});
-
-	$scope.useFilter = function() {
-		CoffeeService.filter($scope.formData)
-			.success(function(data) {
-				$scope.coffees = data;
-			});
-	};
-
-	$scope.init = function() {
-		CoffeeService.init();
-	};
-
-});
-
-app.factory('CoffeeService', function($http) {
-
-	return {
-		get : function() {
-			return $http.get('/coffee');
-		},
-		filter : function(data) {
-			return $http.post('/coffee', data);
-		},
-		init : function() {
-			return $http.get('/coffee/init');
-		},
-	};
-
-});
+};
