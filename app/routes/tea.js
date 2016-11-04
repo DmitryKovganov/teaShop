@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 
 // filter
 router.post('/', function(req, res, next) {
-	var p = req.body.filter;
+	var p = req.body;
 
     var callback = function(err, data) {
 	    if (err) {
@@ -41,8 +41,8 @@ router.post('/', function(req, res, next) {
 		label: 		{ $in: p.label },
 		price: 		{ $gte: p.price.at, $lt: p.price.to}
     })
-    .skip(req.body.index * limitOnPage)
-    .limit(limitOnPage)
+    // .skip(req.body.index * limitOnPage)
+    // .limit(limitOnPage)
 	.exec(callback);
 });
 

@@ -2,26 +2,7 @@
 
 <div class="container">
 
-<!-- PAGINATOR -->
-	<article>
-		<ul class="pagination">
-			<li class="page-item">
-				<a class="page-link" ng-click="useFilter('-1')" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-				<span class="sr-only">Previous</span>
-			</a>
-			</li>
 
-			<li class="active"><a>{{ index }}</a></li>
-
-			<li class="page-item">
-				<a class="page-link" ng-click="useFilter('1')" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-				<span class="sr-only">Next</span>
-				</a>
-			</li>
-		</ul>
-	</article>
 
 <!-- SLIDER -->
 
@@ -49,7 +30,53 @@
 		</div>
 
 		<div class="col-md-9">
-			<div><span ng-repeat="tea in teas">{{ tea }}</span></div>
+			<!-- PAGINATOR -->
+			<article>
+				<!-- <ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" ng-click="useFilter('-1')" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+					</a>
+					</li>
+
+					<li class="active"><a>{{ index }}</a></li>
+
+					<li class="page-item">
+						<a class="page-link" ng-click="useFilter('1')" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+						</a>
+					</li>
+				</ul> -->
+
+				<div class="pagination-div">
+					<ul class="pagination">
+						<li ng-class="DisablePrevPage()">
+							<a ui-sref="tea" ng-click="prevPage()">« Prev</a>
+						</li>
+						<li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+							<a ui-sref="tea">{{n+1}}</a>
+						</li>
+						<li ng-class="DisableNextPage()">
+							<a ui-sref="tea" ng-click="nextPage()">Next »</a>
+						</li>
+						</ul>
+				</div>
+
+
+
+				<ul>
+					<li class="paginationclass" ng-repeat="tea in teas | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage">
+						</span><span>{{ tea }}</span>
+					</li>
+				</ul> 
+
+				
+
+			</article>
+
+			<!-- <div><span ng-repeat="tea in teas">{{ tea }}</span></div> -->
 		</div>
 		
 	</div>

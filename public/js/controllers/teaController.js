@@ -1,18 +1,24 @@
 angular
 	.module('myShop')
-	.controller('teaController', teaController);
+	.controller('teaController', teaController)
+	.filter('pagination', function() {
+	    return function(input, start) {
+	        start = parseInt(start, 10);
+	        return input.slice(start);
+	    };
+	});
 
 teaController.$inject = ['$scope', '$http', 'teaService'];
 
 function teaController($scope, $http, teaService) {
 	$scope.slider = {
-	    minValue: 10,
-	    maxValue: 40,
+	    minValue: 69,
+	    maxValue: 100,
 	    options: {
 	        floor: 0,
 	        ceil: 100,
 	        showTicksValues: 20,
-	        step: 5,
+	        // step: 5,
 	        minRange: 20,
         	pushRange: true,
 	        noSwitching: true,
@@ -161,10 +167,10 @@ function teaController($scope, $http, teaService) {
 		oxidation : angular.copy($scope._data.oxidation),
 		leaf : angular.copy($scope._data.leaf),
 		label : angular.copy($scope._data.label),
-		price: {}
+		price: { at: 0, to: 0}
 	};
 
-	$scope.index = 1;
+	// $scope.index = 1;
 
 	$scope.$watch('slider.minValue', function(v){
 		$scope.formData.price.at = v;
@@ -175,11 +181,11 @@ function teaController($scope, $http, teaService) {
 	});
 
 	$scope.$watchCollection('formData', function(v){
-		$scope.useFilter(0);
+		$scope.useFilter();
 	});
 
 	$scope.$watchCollection('formData.price', function(v){
-		$scope.useFilter(0);
+		$scope.useFilter();
 	});
 
 	$scope.setData = function() {
@@ -193,43 +199,70 @@ function teaController($scope, $http, teaService) {
 		};
 	}
 
-	$scope.setIndex = function(direction) {
-		var index = 0;
-		var intDirection = parseInt(direction);
+	$scope.teas = [];
 
-		if (intDirection == 0) {
-			$scope.index = 1;
-		}
-
-		if ($scope.index + intDirection > 0) {
-			$scope.index += intDirection;
-			index = $scope.index - 1; // тк начало индексирования с 1, а смещение начальное 0
-		}
-
-		return index;
-	}
-
-	$scope.setParams = function(direction) {
-		var params = {};
-		params.filter = $scope.setData();
-		params.index = $scope.setIndex(direction);
-		return params;
-	}
-
-	teaService.get()
-		.success(function(data) {
-			$scope.teas = data;
-		});
-
-	$scope.useFilter = function(direction) {
-		teaService.filter($scope.setParams(direction))
+	$scope.useFilter = function() {
+		teaService.filter($scope.setData())
 			.success(function(data) {
 				$scope.teas = data;
+				$scope.currentPage = 0;
 			});
 	};
 
-	$scope.init = function() {
-		teaService.init();
-	};
+	$scope.useFilter();
+
+	$scope.itemsPerPage = 12;
+ 	$scope.currentPage = 0;
+
+	$scope.showData = function( ){
+	    $scope.range = function() {
+	    var rangeSize = 4;
+	    var ps = [];
+	    var start;
+
+	    start = $scope.currentPage;
+	    if ( start > $scope.pageCount()-rangeSize ) {
+	      start = $scope.pageCount()-rangeSize+1;
+	    }
+
+	    for (var i=start; i<start+rangeSize; i++) {
+	      if(i>=0) 
+	         ps.push(i);
+	    }
+	    return ps;
+	  };
+
+
+	  $scope.prevPage = function() {
+	    if ($scope.currentPage > 0) {
+	      $scope.currentPage--;
+	    }
+	  };
+
+	  $scope.DisablePrevPage = function() {
+	    return $scope.currentPage === 0 ? "disabled" : "";
+	  };
+
+	  $scope.pageCount = function() {
+	    return Math.ceil($scope.teas.length/$scope.itemsPerPage)-1;
+	  };
+
+	  $scope.nextPage = function() {
+	    if ($scope.currentPage < $scope.pageCount()) {
+	      $scope.currentPage++;
+	    }
+	  };
+
+	  $scope.DisableNextPage = function() {
+	    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+	  };
+
+	  $scope.setPage = function(n) {
+	    $scope.currentPage = n;
+	  };
+	         
+	}
+
+	$scope.showData();
 
 };
