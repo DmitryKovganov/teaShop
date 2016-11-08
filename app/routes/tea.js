@@ -2,50 +2,25 @@ var express = require('express');
 var router = express.Router();
 
 var Tea = require('../models/tea');
-var limitOnPage = 12;
-
-// get all
-router.get('/', function(req, res, next) {
-	var callback = function(err, data) {
-	    if (err) {
-	        res.send(err)
-	    }
-	    
-	    res.json(data);
-	};
-
-	Tea.find()
-	.limit(limitOnPage)
-	.exec(callback);
-});
-
-
 
 // filter
 router.post('/', function(req, res, next) {
 	var p = req.body;
 	var data = p.data;
 
-	var queryCount = Tea.find({
-		type: 		{ $in: data.type }, 
-		region: 	{ $in: data.region },
-		oxidation: 	{ $in: data.oxidation },
-		leaf: 		{ $in: data.leaf },
-		label: 		{ $in: data.label },
-		price: 		{ $gte: data.price.at, $lt: data.price.to}
-    });
+	var getQuery = function() {
+		return Tea.find({
+			type: 		{ $in: data.type }, 
+			region: 	{ $in: data.region },
+			oxidation: 	{ $in: data.oxidation },
+			leaf: 		{ $in: data.leaf },
+			label: 		{ $in: data.label },
+			price: 		{ $gte: data.price.at, $lt: data.price.to}
+	    });
+	};
 
-    var queryPaging = Tea.find({
-		type: 		{ $in: data.type }, 
-		region: 	{ $in: data.region },
-		oxidation: 	{ $in: data.oxidation },
-		leaf: 		{ $in: data.leaf },
-		label: 		{ $in: data.label },
-		price: 		{ $gte: data.price.at, $lt: data.price.to}
-    });
-
-    queryCount.count().lean().exec(function(errorCount, count) {
-    	queryPaging.skip(p.pageNumber * p.pageItemsCount).limit(p.pageItemsCount).lean().exec(function(errorPaging, result) {
+    getQuery().count().lean().exec(function(errorCount, count) {
+    	getQuery().skip(p.pageNumber * p.pageItemsCount).limit(p.pageItemsCount).lean().exec(function(errorPaging, result) {
 	    	var obj = {};
 	    	obj.data = result;
 	    	obj.itemsCount = count;

@@ -6,7 +6,7 @@ teaService.$inject = ['$http'];
 
 function teaService($http) {
 	return {
-		get : function() {
+		init : function() {
 			return $http.get('/tea');
 		},
 		filter : function(data) {
