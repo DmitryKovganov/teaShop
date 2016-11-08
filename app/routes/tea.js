@@ -24,26 +24,34 @@ router.get('/', function(req, res, next) {
 // filter
 router.post('/', function(req, res, next) {
 	var p = req.body;
+	var data = p.data;
 
-    var callback = function(err, data) {
-	    if (err) {
-	        res.send(err)
-	    }
+	var queryCount = Tea.find({
+		type: 		{ $in: data.type }, 
+		region: 	{ $in: data.region },
+		oxidation: 	{ $in: data.oxidation },
+		leaf: 		{ $in: data.leaf },
+		label: 		{ $in: data.label },
+		price: 		{ $gte: data.price.at, $lt: data.price.to}
+    });
 
-	    res.json(data);
-	};
+    var queryPaging = Tea.find({
+		type: 		{ $in: data.type }, 
+		region: 	{ $in: data.region },
+		oxidation: 	{ $in: data.oxidation },
+		leaf: 		{ $in: data.leaf },
+		label: 		{ $in: data.label },
+		price: 		{ $gte: data.price.at, $lt: data.price.to}
+    });
 
-	Tea.find({
-		type: 		{ $in: p.type }, 
-		region: 	{ $in: p.region },
-		oxidation: 	{ $in: p.oxidation },
-		leaf: 		{ $in: p.leaf },
-		label: 		{ $in: p.label },
-		price: 		{ $gte: p.price.at, $lt: p.price.to}
-    })
-    // .skip(req.body.index * limitOnPage)
-    // .limit(limitOnPage)
-	.exec(callback);
+    queryCount.count().lean().exec(function(errorCount, count) {
+    	queryPaging.skip(p.pageNumber * p.pageItemsCount).limit(p.pageItemsCount).lean().exec(function(errorPaging, result) {
+	    	var obj = {};
+	    	obj.data = result;
+	    	obj.itemsCount = count;
+	        res.json(obj);
+		});
+    });
 });
 
 router.get('/init', function(req, res, next) {

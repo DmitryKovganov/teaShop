@@ -1,24 +1,18 @@
 angular
 	.module('myShop')
-	.controller('teaController', teaController)
-	.filter('pagination', function() {
-	    return function(input, start) {
-	        start = parseInt(start, 10);
-	        return input.slice(start);
-	    };
-	});
+	.controller('teaController', teaController);
 
 teaController.$inject = ['$scope', '$http', 'teaService'];
 
 function teaController($scope, $http, teaService) {
 	$scope.slider = {
-	    minValue: 69,
-	    maxValue: 100,
+	    minValue: 30,
+	    maxValue: 70,
 	    options: {
 	        floor: 0,
 	        ceil: 100,
 	        showTicksValues: 20,
-	        // step: 5,
+	        step: 5,
 	        minRange: 20,
         	pushRange: true,
 	        noSwitching: true,
@@ -161,16 +155,44 @@ function teaController($scope, $http, teaService) {
 		    "value": "Akbar Tea"
 		}];
 
+	$scope.teas = [];
+
 	$scope.formData = { 
 		type : angular.copy($scope._data.type),
 		region : angular.copy($scope._data.region),
 		oxidation : angular.copy($scope._data.oxidation),
 		leaf : angular.copy($scope._data.leaf),
 		label : angular.copy($scope._data.label),
-		price: { at: 0, to: 0}
+		price: { at: 0, to: 100}
 	};
 
-	// $scope.index = 1;
+	$scope.itemsPerPage = 12;
+ 	$scope.currentPage = 0;
+ 	$scope.pageCount = 5;
+
+	$scope.setData = function(pageNumber) {
+		var params = {};
+		params.data = { 
+			type : $scope.formData.type.map(function(a) {return a.value;}),
+			region : $scope.formData.region.map(function(a) {return a.value;}),
+			oxidation : $scope.formData.oxidation.map(function(a) {return a.value;}),
+			leaf : $scope.formData.leaf.map(function(a) {return a.value;}),
+			label : $scope.formData.label.map(function(a) {return a.value;}),
+			price: $scope.formData.price
+		};
+		params.pageNumber = pageNumber;
+		params.pageItemsCount = $scope.itemsPerPage;
+		return params;
+	}
+
+	$scope.useFilter = function(pageNumber) {
+		teaService.filter($scope.setData(pageNumber))
+			.success(function(result) {
+				$scope.teas = result.data;
+				$scope.pageCount = Math.ceil(result.itemsCount / $scope.itemsPerPage) - 1;
+				$scope.currentPage = pageNumber;
+			});
+	};
 
 	$scope.$watch('slider.minValue', function(v){
 		$scope.formData.price.at = v;
@@ -181,88 +203,50 @@ function teaController($scope, $http, teaService) {
 	});
 
 	$scope.$watchCollection('formData', function(v){
-		$scope.useFilter();
+		$scope.useFilter(0);
 	});
 
 	$scope.$watchCollection('formData.price', function(v){
-		$scope.useFilter();
+		$scope.useFilter(0);
 	});
 
-	$scope.setData = function() {
-		return { 
-			type : $scope.formData.type.map(function(a) {return a.value;}),
-			region : $scope.formData.region.map(function(a) {return a.value;}),
-			oxidation : $scope.formData.oxidation.map(function(a) {return a.value;}),
-			leaf : $scope.formData.leaf.map(function(a) {return a.value;}),
-			label : $scope.formData.label.map(function(a) {return a.value;}),
-			price: $scope.formData.price
-		};
-	}
+	$scope.useFilter($scope.currentPage);
 
-	$scope.teas = [];
-
-	$scope.useFilter = function() {
-		teaService.filter($scope.setData())
-			.success(function(data) {
-				$scope.teas = data;
-				$scope.currentPage = 0;
-			});
-	};
-
-	$scope.useFilter();
-
-	$scope.itemsPerPage = 12;
- 	$scope.currentPage = 0;
-
-	$scope.showData = function( ){
-	    $scope.range = function() {
-	    var rangeSize = 4;
+    $scope.range = function() {
+	    var rangeSize = 5;
 	    var ps = [];
 	    var start;
 
 	    start = $scope.currentPage;
-	    if ( start > $scope.pageCount()-rangeSize ) {
-	      start = $scope.pageCount()-rangeSize+1;
+	    if (start > $scope.pageCount-rangeSize) {
+	      start = $scope.pageCount - rangeSize + 1;
 	    }
 
-	    for (var i=start; i<start+rangeSize; i++) {
-	      if(i>=0) 
+	    for (var i = start; i < start + rangeSize; i++) {
+	      if (i >= 0) 
 	         ps.push(i);
 	    }
 	    return ps;
-	  };
+  	};
 
 
-	  $scope.prevPage = function() {
-	    if ($scope.currentPage > 0) {
-	      $scope.currentPage--;
-	    }
-	  };
+	$scope.prevPage = function() {
+		if ($scope.currentPage > 0) {
+	  		$scope.useFilter($scope.currentPage - 1);
+		}
+	};
 
-	  $scope.DisablePrevPage = function() {
-	    return $scope.currentPage === 0 ? "disabled" : "";
-	  };
+	$scope.DisablePrevPage = function() {
+		return $scope.currentPage === 0 ? "disabled" : "";
+	};
 
-	  $scope.pageCount = function() {
-	    return Math.ceil($scope.teas.length/$scope.itemsPerPage)-1;
-	  };
+	$scope.nextPage = function() {
+		if ($scope.currentPage < $scope.pageCount) {
+			$scope.useFilter($scope.currentPage + 1);
+		}
+	};
 
-	  $scope.nextPage = function() {
-	    if ($scope.currentPage < $scope.pageCount()) {
-	      $scope.currentPage++;
-	    }
-	  };
-
-	  $scope.DisableNextPage = function() {
-	    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
-	  };
-
-	  $scope.setPage = function(n) {
-	    $scope.currentPage = n;
-	  };
-	         
-	}
-
-	$scope.showData();
-
+	$scope.DisableNextPage = function() {
+		return $scope.currentPage === $scope.pageCount ? "disabled" : "";
+	};
 };
