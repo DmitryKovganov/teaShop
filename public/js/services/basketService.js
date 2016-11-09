@@ -5,7 +5,7 @@ angular
 // teaService.$inject = ['$http'];
 
 function backetService() {
-    var backet = {};
+    var backet = { name: 'lol' };
     return {
         getBacket: function () {
             return backet;
