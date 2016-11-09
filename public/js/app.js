@@ -9,8 +9,8 @@ function config($stateProvider, $urlRouterProvider) {
     
     $stateProvider   
         .state('tea', {
-            url: '/tea',
-            templateUrl: './js/partials/partial-tea.html',
+            url: '/',
+            templateUrl: './js/main/partial-tea.html',
             controller: 'teaController'
         })
 

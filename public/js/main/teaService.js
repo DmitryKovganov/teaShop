@@ -7,10 +7,10 @@ teaService.$inject = ['$http'];
 function teaService($http) {
 	return {
 		init : function() {
-			return $http.get('/tea');
+			return $http.get('/');
 		},
 		filter : function(data) {
-			return $http.post('/tea', data);
+			return $http.post('/', data);
 		}
 	};
 };

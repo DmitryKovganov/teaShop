@@ -23,24 +23,17 @@
 
 <!-- APP} --> 
     <script type="text/javascript" src="./js/app.js"></script>
-    <script type="text/javascript" src="./js/controllers/teaController.js"></script>
-    <script type="text/javascript" src="./js/services/teaService.js"></script>
+    <script type="text/javascript" src="./js/main/teaController.js"></script>
+    <script type="text/javascript" src="./js/main/teaService.js"></script>
 
-    <script type="text/javascript" src="./js/services/basketService.js"></script>
-    <script type="text/javascript" src="./js/controllers/basketController.js"></script>
-    <script type="text/javascript" src="./js/partials/basketView.js"></script>
+    <script type="text/javascript" src="./js/basket/basketService.js"></script>
+    <script type="text/javascript" src="./js/basket/basketController.js"></script>
+    <script type="text/javascript" src="./js/basket/basketView.js"></script>
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-inverse" role="navigation">
-        <ul class="nav navbar-nav">
-            <li><a ui-sref="tea">Tea</a></li>
-            <!-- <li><a ui-sref="coffee">Coffee</a></li> -->
-        </ul>
-    </nav>
-    
     <div class="container">
         <div ui-view></div>
     </div>

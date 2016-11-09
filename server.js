@@ -18,9 +18,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 
 
 // routes ==================================================
-app.use('/', require('./app/routes/index'));
-app.use('/tea', require('./app/routes/tea'));
-app.use('/coffee', require('./app/routes/coffee'));
+app.use('/', require('./app/routes/tea'));
 
 
 // start app ===============================================
