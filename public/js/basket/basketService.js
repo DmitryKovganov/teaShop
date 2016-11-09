@@ -25,8 +25,11 @@ function basketService() {
         basket.push(goods);
     };
 
-    function remove(id) {
-        basket = basket.slice(id, id + 1);
+    function remove(goods) {
+        var index = basket.map(function(item) { return item._id; }).indexOf(goods._id);
+        if (index != -1) {
+            basket.splice(index, 1);
+        }
     };
 
     function increment() {

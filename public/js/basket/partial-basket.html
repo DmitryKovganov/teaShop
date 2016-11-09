@@ -1,0 +1,7 @@
+<ul>
+	<li ng-repeat="item in basket">
+		<span>{{ item }}</span>
+		<button type="button" class="btn btn-warning" ng-click="removeFromBasket(item)"><span class="glyphicon glyphicon-minus"></span></button>
+		<button type="button" class="btn btn-success" ng-click="removeFromBasket(item)"><span class="glyphicon glyphicon-plus"></span></button>
+	</li>
+</ul> 

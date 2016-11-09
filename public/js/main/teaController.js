@@ -24,6 +24,7 @@ function teaController($scope, $http, teaService, basketService) {
  	$scope.DisableNextPage = DisableNextPage;
 
  	$scope.addToBasket = addToBasket;
+ 	$scope.removeFromBasket = removeFromBasket;
 
 	$scope.slider = {
 	    minValue: 30,
@@ -242,8 +243,6 @@ function teaController($scope, $http, teaService, basketService) {
 		$scope.useFilter(0);
 	});
 
-	$scope.useFilter($scope.currentPage);
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -289,6 +288,9 @@ function teaController($scope, $http, teaService, basketService) {
 
 	function addToBasket(tea) {
 		basketService.add(tea);
-		console.log(basketService.get());
 	};
+
+	function removeFromBasket(tea) {
+		basketService.remove(tea);
+	}
 };

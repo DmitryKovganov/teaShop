@@ -43,12 +43,13 @@
 					</ul>
 				</div>
 
-    			<!-- <div basket-view></div> -->
+    			<button ui-sref="basket" type="button" class="btn btn-warning">Basket</button>
 
 				<ul>
 					<li class="paginationclass" ng-repeat="tea in teas">
 						<span>{{ tea }}</span>
 						<button type="button" class="btn btn-info" ng-click="addToBasket(tea)">Add to card</button>
+						<button type="button" class="btn btn-danger" ng-click="removeFromBasket(tea)">Remove</button>
 					</li>
 				</ul> 
 			</article>

@@ -14,6 +14,13 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'teaController'
         })
 
+        .state('basket', {
+            url: '/basket',
+            templateUrl: './js/basket/partial-basket.html',
+            controller: 'basketController'
+        })
+
+
         // .state('coffee', {
         //     url: '/coffee',
         //     templateUrl: './js/partials/partial-coffee.html',
