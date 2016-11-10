@@ -20,6 +20,12 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'basketController'
         })
 
+        .state('pay', {
+            url: '/pay',
+            templateUrl: './js/pay/partial-pay.html',
+            controller: 'payController'
+        })
+
 
         // .state('coffee', {
         //     url: '/coffee',
