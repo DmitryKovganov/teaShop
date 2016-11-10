@@ -24,7 +24,6 @@ function teaController($scope, $http, teaService, basketService) {
  	$scope.DisableNextPage = DisableNextPage;
 
  	$scope.addToBasket = addToBasket;
- 	$scope.removeFromBasket = removeFromBasket;
 
 	$scope.slider = {
 	    minValue: 30,
@@ -289,8 +288,4 @@ function teaController($scope, $http, teaService, basketService) {
 	function addToBasket(tea) {
 		basketService.add(tea);
 	};
-
-	function removeFromBasket(tea) {
-		basketService.remove(tea);
-	}
 };

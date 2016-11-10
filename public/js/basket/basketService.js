@@ -11,7 +11,8 @@ function basketService() {
         get: get,
         add: add,
         remove: remove,
-        increment: increment
+        increase: increase,
+        total: total
     };
     return service;
 
@@ -22,17 +23,36 @@ function basketService() {
     };
 
     function add(goods) {
-        basket.push(goods);
+        if (getIndexOfGoods(goods._id) == -1) {
+            basket.push({ data: goods, count: 1 });
+        }
+        else {
+            increase(goods._id, 1);
+        }
     };
 
-    function remove(goods) {
-        var index = basket.map(function(item) { return item._id; }).indexOf(goods._id);
+    function remove(id) {
+        var index = getIndexOfGoods(id);
         if (index != -1) {
             basket.splice(index, 1);
         }
     };
 
-    function increment() {
-        /* */
+    function increase(id, diff) {
+        var index = getIndexOfGoods(id);
+        basket[index].count += diff;
+        if (basket[index].count == 0) {
+            basket.splice(index, 1);
+        }
     };
+
+    function total() {
+        return basket.reduce(function(previousValue, item) {
+            return previousValue + item.count * item.data.price;
+        }, 0);
+    }
+
+    function getIndexOfGoods(id) {
+        return basket.map(function(item) { return item.data._id; }).indexOf(id);
+    }
 };

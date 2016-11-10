@@ -5,5 +5,5 @@ angular
 payController.$inject = ['$scope', 'basketService'];
 
 function payController($scope, basketService) {
-	$scope.basket = basketService.get();
+	$scope.total = basketService.total();
 }

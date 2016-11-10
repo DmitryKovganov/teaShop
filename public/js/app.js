@@ -25,13 +25,6 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: './js/pay/partial-pay.html',
             controller: 'payController'
         })
-
-
-        // .state('coffee', {
-        //     url: '/coffee',
-        //     templateUrl: './js/partials/partial-coffee.html',
-        //     controller: 'coffeeController'
-        // })
 };
 
 // 	$scope.formData = {type: 'arabica', region: ['Moccoo', 'Brazilian', 'Colombian', 'Indian', 'African', 'Arabic'], technology: 'powder', label: ['Lavazza', 'Starbucks'], price: { at: 28, to: 35 }};

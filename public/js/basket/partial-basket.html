@@ -1,8 +1,9 @@
 <ul>
 	<li ng-repeat="item in basket">
 		<span>{{ item }}</span>
-		<button type="button" class="btn btn-warning" ng-click="removeFromBasket(item)"><span class="glyphicon glyphicon-minus"></span></button>
-		<button type="button" class="btn btn-success" ng-click="removeFromBasket(item)"><span class="glyphicon glyphicon-plus"></span></button>
+		<button type="button" class="btn btn-warning" ng-click="increase(item.data._id, -1)"><span class="glyphicon glyphicon-minus"></span></button>
+		<button type="button" class="btn btn-success" ng-click="increase(item.data._id, 1)"><span class="glyphicon glyphicon-plus"></span></button>
+		<button type="button" class="btn btn-danger" ng-click="removeFromBasket(item.data._id)"><span class="glyphicon glyphicon-trash"></span></button>
 	</li>
 </ul>
 
