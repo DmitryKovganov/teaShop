@@ -15,9 +15,27 @@
 
 		<input id="column-right" type="text" name="cvc" placeholder="CCV"/>
 
-		<input id="input-button" type="submit" value="Submit"/>
+		<input id="input-button" type="submit" value="Submit" data-toggle="modal" data-target=".bd-example-modal-sm" ng-click="pay()"/>
 	</div>
 </form>
+
+
+<div class="modal bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Payment is completed</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Thank you for your purchase! You can return to the home page</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ui-sref="tea">Return</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="./js/libs/card.js"></script>
 <script type="text/javascript" src="./js/libs/jquery.card.js"></script>

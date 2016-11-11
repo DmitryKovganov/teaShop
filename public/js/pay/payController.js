@@ -6,4 +6,11 @@ payController.$inject = ['$scope', 'basketService'];
 
 function payController($scope, basketService) {
 	$scope.total = basketService.total();
+	$scope.pay = pay;
+
+	function pay() {
+		console.log("payed");
+		basketService.clean();
+		$scope.total = basketService.total();
+	}
 }

@@ -1,10 +1,44 @@
-<ul>
-	<li ng-repeat="item in basket">
-		<span>{{ item }}</span>
-		<button type="button" class="btn btn-warning" ng-click="increase(item.data._id, -1)"><span class="glyphicon glyphicon-minus"></span></button>
-		<button type="button" class="btn btn-success" ng-click="increase(item.data._id, 1)"><span class="glyphicon glyphicon-plus"></span></button>
-		<button type="button" class="btn btn-danger" ng-click="removeFromBasket(item.data._id)"><span class="glyphicon glyphicon-trash"></span></button>
-	</li>
-</ul>
+<div class="container">
+	<div class="row">
+        <div class="span12">
+    		<table class="table table-condensed table-hover">
+    			<thead>
+    				<tr>
+    					<th>Label</th>
+    					<th>Leaf</th>
+    					<th>oxidation</th>
+    					<th>Price</th>
+    					<th>Count (x100g)</th>
+    					<th>Total price</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+	    			<tr ng-repeat="item in basket">
+	    				<td>{{item.data.label}}</td>
+    					<td>{{item.data.leaf}}</td>
+    					<td>{{item.data.oxidation}}</td>
+    					<td>{{item.data.price}}</td>
+    					<td>
+	    					<button type="button" class="btn btn-warning" ng-click="increase(item.data._id, -1)"><span class="glyphicon glyphicon-minus"></span></button>
+	    					{{item.count}}
+							<button type="button" class="btn btn-success" ng-click="increase(item.data._id, 1)"><span class="glyphicon glyphicon-plus"></span></button>
+    					</td>
+    					<td>
+    						<button type="button" class="btn btn-danger" ng-click="removeFromBasket(item.data._id)"><span class="glyphicon glyphicon-trash"></span></button>
+	    					{{item.data.price * item.count}}
+    					</td>
+	    			</tr>
 
-<button ui-sref="pay" type="button" class="btn btn-info"><span class="glyphicon glyphicon-usd"></span> Pay</button>
+    				<tr>
+    					<td></td>
+    					<td></td>
+    					<td></td>
+    					<td></td>
+    					<td></td>
+    					<td><button ui-sref="pay" type="button" class="btn btn-info">{{totalPrice}}<span class="glyphicon glyphicon-usd"></span></button></td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+	</div>
+</div>

@@ -8,11 +8,12 @@ function basketService() {
     var basket = [];
 
     var service = {
-        get: get,
+        basket: get,
         add: add,
         remove: remove,
         increase: increase,
-        total: total
+        total: total,
+        clean: clean
     };
     return service;
 
@@ -54,5 +55,9 @@ function basketService() {
 
     function getIndexOfGoods(id) {
         return basket.map(function(item) { return item.data._id; }).indexOf(id);
+    }
+
+    function clean() {
+        basket = [];
     }
 };
