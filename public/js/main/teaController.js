@@ -27,13 +27,13 @@ function teaController($scope, $http, teaService, basketService) {
 
 	$scope.slider = {
 	    minValue: 30,
-	    maxValue: 70,
+	    maxValue: 65,
 	    options: {
 	        floor: 0,
 	        ceil: 100,
-	        showTicksValues: 20,
+	        showTicksValues: 25,
 	        step: 5,
-	        minRange: 20,
+	        minRange: 10,
         	pushRange: true,
 	        noSwitching: true,
 	        draggableRange: true,

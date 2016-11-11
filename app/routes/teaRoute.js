@@ -1,21 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-var Tea = require('../models/tea');
+var Tea = require('../models/teaModel');
 
-// filter
 router.post('/', function(req, res, next) {
 	var p = req.body;
 	var data = p.data;
 
 	var getQuery = function() {
 		return Tea.find({
-			type: 		{ $in: data.type }, 
-			region: 	{ $in: data.region },
-			oxidation: 	{ $in: data.oxidation },
-			leaf: 		{ $in: data.leaf },
-			label: 		{ $in: data.label },
-			price: 		{ $gte: data.price.at, $lt: data.price.to}
+			type		: { $in: data.type }, 
+			region		: { $in: data.region },
+			oxidation	: { $in: data.oxidation },
+			leaf		: { $in: data.leaf },
+			label		: { $in: data.label },
+			price		: { $gte: data.price.at, $lt: data.price.to}
 	    });
 	};
 

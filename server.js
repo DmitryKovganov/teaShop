@@ -18,9 +18,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 
 
 // routes ==================================================
-app.use('/', require('./app/routes/tea'));
-// var path = require('path');
-// app.use('/scripts', express.static(path.join(__dirname, 'node_modules')));
+app.use('/', require('./app/routes/teaRoute'));
+
 
 // start app ===============================================
 var port = process.env.PORT || 8080; 
