@@ -9,7 +9,7 @@
     </div>
 </nav>
 
-<div class="container cont">
+<div class="container container-centered">
 	<!-- SLIDER -->
 	<div class="row">
 		<div class="col-md-3">
@@ -24,13 +24,15 @@
 						rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
 			</article>
 
+
 			<article>
-				<multiselect ng-model="formData.type" options="_data.type" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-				<multiselect ng-model="formData.leaf" options="_data.leaf" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-				<multiselect ng-model="formData.region" options="_data.region" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-				<multiselect ng-model="formData.oxidation" options="_data.oxidation" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
-				<multiselect ng-model="formData.label" options="_data.label" id-prop="id" display-prop="description" show-select-all="true" show-unselect-all="true"></multiselect>
+				<div ng-dropdown-multiselect="" options="_data.type" selected-model="formData.type" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите разновидность' }" ></div>
+				<div ng-dropdown-multiselect="" options="_data.leaf" selected-model="formData.leaf" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите размер листа' }" ></div>
+				<div ng-dropdown-multiselect="" options="_data.region" selected-model="formData.region" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите регион' }" ></div>
+				<div ng-dropdown-multiselect="" options="_data.oxidation" selected-model="formData.oxidation" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите степень окисления' }" ></div>
+				<div ng-dropdown-multiselect="" options="_data.label" selected-model="formData.label" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите производителя' }" ></div>
 			</article>
+
 		</div>
 
 		<div class="col-md-9">
@@ -39,9 +41,9 @@
 				<div id="products" class="row list-group">
 					<div class="item  col-xs-4 col-lg-4" ng-repeat="tea in teas">
 						<div class="thumbnail">
-							<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+							<img class="group list-group-image" src="../images/tea.png" alt="" />
 							<div class="caption">
-								<h4 class="group inner list-group-item-heading">{{tea.label}}</h4><p class="group inner list-group-item-text">{{tea.leaf + " " + tea.oxidation}}</p>
+								<h4 class="group inner list-group-item-heading">{{tea.label}}</h4><p class="group inner list-group-item-text">{{tea.leaf + " leaf " + tea.oxidation + " tea"}}</p>
 								<div class="row">
 									<div class="col-xs-12 col-md-6">
 										<p class="lead">{{tea.price | currency}}</p>
@@ -58,13 +60,13 @@
 						<div class="text-center">
 							<ul class="pagination">
 								<li ng-class="DisablePrevPage()">
-									<a ui-sref="tea" ng-click="prevPage()">« Prev</a>
+									<a ui-sref="tea" ng-click="prevPage()"><span>&laquo;Prev</span></a>
 								</li>
 								<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
-									<a ui-sref="tea" ng-click="useFilter(n)">{{n+1}}</a>
+									<a ui-sref="tea" ng-click="useFilter(n)">{{n + 1}}</a>
 								</li>
 								<li ng-class="DisableNextPage()">
-									<a ui-sref="tea" ng-click="nextPage()">Next »</a>
+									<a ui-sref="tea" ng-click="nextPage()"><span>Next&raquo;</span></a>
 								</li>
 							</ul>	
 						</div>								

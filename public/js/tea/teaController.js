@@ -27,8 +27,8 @@ function teaController($scope, $http, teaService, basketService) {
  	$scope.addToBasket = addToBasket;
 
 	$scope.slider = {
-	    minValue: 30,
-	    maxValue: 65,
+	    minValue: 20,
+	    maxValue: 50,
 	    options: {
 	        floor: 0,
 	        ceil: 100,
@@ -183,6 +183,17 @@ function teaController($scope, $http, teaService, basketService) {
 			    "value": "Akbar Tea"
 			}];
 
+
+		$scope.selectedSettings = {
+			displayProp: 'description',
+			idProp: 'value',
+			externalIdProp: 'value',
+			smartButtonMaxItems: 4,
+			smartButtonTextConverter: function(itemText, originalItem) {
+		        return itemText;
+		    }
+		};
+
 		$scope.formData = { 
 			type : angular.copy($scope._data.type),
 			region : angular.copy($scope._data.region),
@@ -229,17 +240,31 @@ function teaController($scope, $http, teaService, basketService) {
 
 	$scope.$watch('slider.minValue', function(v){
 		$scope.formData.price.at = v;
+		$scope.useFilter(0);
 	});
 
 	$scope.$watch('slider.maxValue', function(v){
 		$scope.formData.price.to = v;
-	});
-
-	$scope.$watchCollection('formData', function(v){
 		$scope.useFilter(0);
 	});
 
-	$scope.$watchCollection('formData.price', function(v){
+	$scope.$watchCollection('formData.type', function(v){
+		$scope.useFilter(0);
+	});
+
+	$scope.$watchCollection('formData.region', function(v){
+		$scope.useFilter(0);
+	});
+
+	$scope.$watchCollection('formData.oxidation', function(v){
+		$scope.useFilter(0);
+	});
+
+	$scope.$watchCollection('formData.leaf', function(v){
+		$scope.useFilter(0);
+	});
+
+	$scope.$watchCollection('formData.label', function(v){
 		$scope.useFilter(0);
 	});
 

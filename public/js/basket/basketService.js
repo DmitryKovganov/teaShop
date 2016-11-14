@@ -2,8 +2,6 @@ angular
     .module('myShop')
     .service('basketService', basketService);
 
-// teaService.$inject = ['$http'];
-
 function basketService() {
     var basket = [];
 
@@ -16,8 +14,6 @@ function basketService() {
         clean: clean
     };
     return service;
-
-    ////////////
 
     function get() {
         return basket;

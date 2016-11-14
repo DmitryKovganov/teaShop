@@ -5,16 +5,14 @@ html {
 body { 
 	padding-top:50px; 
 	background-repeat: repeat; 
-	background-image: url(../image/back.jpg);
+	background-image: url(../images/back.jpg);
 }
 
 ul li{
 	list-style: none;
 }
 
-.table-collor{
-	background-color:#f8f8f8;
-}
+/* 3*4 goods */
 .thumbnail
 {
 	margin-bottom: 20px;
@@ -23,7 +21,6 @@ ul li{
 	-moz-border-radius: 0px;
 	border-radius: 0px;
 }
-
 .item.list-group-item
 {
 	float: none;
@@ -35,7 +32,6 @@ ul li{
 {
 	background: #428bca;
 }
-
 .item.list-group-item .list-group-image
 {
 	margin-right: 10px;
@@ -71,23 +67,32 @@ ul li{
 {
 	margin: 0 0 11px;
 }
-.container{
-	width:100%!important;
-	margin:0!important;
-	padding:0 2%!important;
+/* END 3*4 goods */
+
+.container {
+	width: 100%!important;
+	margin: 0!important;
+	padding: 0 2%!important;
 }
 
-li.btn-default{
-	font-size:26px;
+.container-centered {
+	margin-top: 70px!important;
+}
+
+.table-collored{
+	background-color:#f8f8f8;
+}
+
+li.btn-default {
+	font-size: 26px;
 }   
+
 ul.navbar-nav {
 	width: 100%;
 	text-align: center;
 }
+
 ul.navbar-nav  > li {
 	float: none;
 	display: inline-block;
-}
-.cont{
-	margin-top:70px!important;
 }
