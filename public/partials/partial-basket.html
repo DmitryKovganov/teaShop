@@ -45,7 +45,7 @@
     					<td></td>
     					<td></td>
     					<td></td>
-    					<td><button ui-sref="pay" type="button" class="btn btn-info btn-lg">{{totalPrice | currency}}</button></td>
+    					<td><button ui-sref="pay" type="button" class="btn btn-info btn-lg" ng-disabled="!totalPrice">{{totalPrice | currency}}</button></td>
     				</tr>
     			</tbody>
     		</table>
