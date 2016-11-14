@@ -11,15 +11,15 @@
 <div class="container container-centered">
 	<div class="row">
         <div class="span12">
-    		<table class="table table-condensed table-hover table-collored">
+    		<table class="table table-hover table-striped table-collored">
     			<thead>
     				<tr>
-    					<th>Label</th>
-    					<th>Leaf</th>
-    					<th>Oxidation</th>
-    					<th>Price</th>
-    					<th>Count (x100g)</th>
-    					<th>Total price</th>
+    					<th class="col-md-2" class="col-md-2">Label</th>
+    					<th class="col-md-2">Leaf</th>
+    					<th class="col-md-2">Oxidation</th>
+    					<th class="col-md-2">Price</th>
+    					<th class="col-md-2">Count (x100g)</th>
+    					<th class="col-md-2">Total price</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -27,7 +27,7 @@
 	    				<td>{{item.data.label}}</td>
     					<td>{{item.data.leaf}}</td>
     					<td>{{item.data.oxidation}}</td>
-    					<td>{{item.data.price}}</td>
+    					<td>{{item.data.price | currency}}</td>
     					<td>
 	    					<button type="button" class="btn btn-warning" ng-click="increase(item.data._id, -1)"><span class="glyphicon glyphicon-minus"></span></button>
 	    					{{item.count}}
@@ -35,7 +35,7 @@
     					</td>
     					<td>
     						<button type="button" class="btn btn-danger" ng-click="removeFromBasket(item.data._id)"><span class="glyphicon glyphicon-trash"></span></button>
-	    					{{item.data.price * item.count}}
+	    					{{item.data.price * item.count | currency}}
     					</td>
 	    			</tr>
 
@@ -45,7 +45,7 @@
     					<td></td>
     					<td></td>
     					<td></td>
-    					<td><button ui-sref="pay" type="button" class="btn btn-info">{{totalPrice | currency}}</button></td>
+    					<td><button ui-sref="pay" type="button" class="btn btn-info btn-lg">{{totalPrice | currency}}</button></td>
     				</tr>
     			</tbody>
     		</table>

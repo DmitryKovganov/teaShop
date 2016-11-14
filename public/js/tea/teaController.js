@@ -10,7 +10,7 @@ function teaController($scope, $http, teaService, basketService) {
 	$scope.formData = {};
 	$scope.teas = [];
 
-	$scope.itemsPerPage = 12;
+	$scope.itemsPerPage = 15;
  	$scope.currentPage = 0;
  	$scope.pageCount = 0;
 
@@ -20,29 +20,11 @@ function teaController($scope, $http, teaService, basketService) {
  	$scope.range = range;
  	$scope.prevPage = prevPage;
  	$scope.nextPage = nextPage;
- 	$scope.DisablePrevPage = DisablePrevPage;
- 	$scope.DisableNextPage = DisableNextPage;
+ 	$scope.disablePrevPage = disablePrevPage;
+ 	$scope.disableNextPage = disableNextPage;
 
 	$scope.totalPrice = basketService.total();
- 	$scope.addToBasket = addToBasket;
-
-	$scope.slider = {
-	    minValue: 20,
-	    maxValue: 50,
-	    options: {
-	        floor: 0,
-	        ceil: 100,
-	        showTicksValues: 25,
-	        step: 5,
-	        minRange: 10,
-        	pushRange: true,
-	        noSwitching: true,
-	        draggableRange: true,
-	        translate: function(value) {
-		    	return '$' + value;
-		    }
-	    }
-	};
+ 	$scope.addToBasket = addToBasket;	
 
 	$scope.initData();
 
@@ -55,14 +37,16 @@ function teaController($scope, $http, teaService, basketService) {
 		$scope._data.type = [
 			{
 			    "id": "1",
-			    "description": "Китайская разновидность",
+			    "description": "Китайская",
 			    "value": "sinensis"
 			},
 			{
 			    "id": "2",
-			    "description": "Ассамская разновидность",
+			    "description": "Ассамская",
 			    "value": "assamica"
-			}];
+			}
+		];
+
 		$scope._data.region = [
 			{
 			    "id": "1",
@@ -103,7 +87,9 @@ function teaController($scope, $http, teaService, basketService) {
 			    "id": "8",
 			    "description": "Арабский",
 			    "value": "Arabic"
-			}];
+			}
+		];
+
 		$scope._data.oxidation = [
 			{
 			    "id": "1",
@@ -134,7 +120,9 @@ function teaController($scope, $http, teaService, basketService) {
 			    "id": "6",
 			    "description": "Пуэр",
 			    "value": "puer"
-			}];
+			}
+		];
+
 		$scope._data.leaf = [
 			{
 			    "id": "1",
@@ -150,7 +138,9 @@ function teaController($scope, $http, teaService, basketService) {
 			    "id": "3",
 			    "description": "Мелкий",
 			    "value": "small"
-			}];
+			}
+		];
+
 		$scope._data.label = [
 			{
 			    "id": "1",
@@ -181,14 +171,40 @@ function teaController($scope, $http, teaService, basketService) {
 			    "id": "6",
 			    "description": "Akbar Tea",
 			    "value": "Akbar Tea"
-			}];
+			}
+		];
 
+		$scope.slider = {
+		    minValue: 20,
+		    maxValue: 50,
+		    options: {
+		        floor: 0,
+		        ceil: 100,
+		        showTicksValues: 25,
+		        step: 5,
+		        minRange: 10,
+	        	pushRange: true,
+		        noSwitching: true,
+		        draggableRange: true,
+		        translate: function(value) {
+			    	return '$' + value;
+			    }
+		    }
+		};
+
+		$scope.dropdownDefaultText = {
+			type: { buttonDefaultText: 'Выберите разновидность' },
+			leaf: { buttonDefaultText: 'Выберите размер листа' },
+			region: { buttonDefaultText: 'Выберите регион' },
+			oxidation: { buttonDefaultText: 'Выберите степень окисления' },
+			label: { buttonDefaultText: 'Выберите производителя' }
+		};
 
 		$scope.selectedSettings = {
 			displayProp: 'description',
 			idProp: 'value',
 			externalIdProp: 'value',
-			smartButtonMaxItems: 4,
+			smartButtonMaxItems: 3,
 			smartButtonTextConverter: function(itemText, originalItem) {
 		        return itemText;
 		    }
@@ -303,11 +319,11 @@ function teaController($scope, $http, teaService, basketService) {
 		}
 	};
 
-	function DisablePrevPage() {
+	function disablePrevPage() {
 		return $scope.currentPage === 0 ? "disabled" : "";
 	};
 
-	function DisableNextPage() {
+	function disableNextPage() {
 		return $scope.currentPage === $scope.pageCount ? "disabled" : "";
 	};
 

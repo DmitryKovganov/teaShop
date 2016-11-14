@@ -14,66 +14,64 @@
 	<div class="row">
 		<div class="col-md-3">
 			<article>
-				Min Value:
+				Min&nbsp;&nbsp;Value:
 				<input type="number" ng-model="slider.minValue" />
 				<br/>Max Value:
-				<input type="number" ng-model="slider.maxValue"  />
+				<input type="number" ng-model="slider.maxValue" />
 				<br/>
 				<rzslider rz-slider-model="slider.minValue"
 						rz-slider-high="slider.maxValue"
-						rz-slider-options="slider.options" ></rzslider><br/><br/><br/><br/>
+						rz-slider-options="slider.options" ></rzslider><br/><br/><br/>
 			</article>
 
 
 			<article>
-				<div ng-dropdown-multiselect="" options="_data.type" selected-model="formData.type" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите разновидность' }" ></div>
-				<div ng-dropdown-multiselect="" options="_data.leaf" selected-model="formData.leaf" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите размер листа' }" ></div>
-				<div ng-dropdown-multiselect="" options="_data.region" selected-model="formData.region" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите регион' }" ></div>
-				<div ng-dropdown-multiselect="" options="_data.oxidation" selected-model="formData.oxidation" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите степень окисления' }" ></div>
-				<div ng-dropdown-multiselect="" options="_data.label" selected-model="formData.label" extra-settings="selectedSettings" translation-texts="{ buttonDefaultText: 'Выберите производителя' }" ></div>
+				<div ng-dropdown-multiselect="" options="_data.type" selected-model="formData.type" extra-settings="selectedSettings" translation-texts="dropdownDefaultText.type" ></div>
+				<div ng-dropdown-multiselect="" options="_data.leaf" selected-model="formData.leaf" extra-settings="selectedSettings" translation-texts="dropdownDefaultText.leaf" ></div>
+				<div ng-dropdown-multiselect="" options="_data.region" selected-model="formData.region" extra-settings="selectedSettings" translation-texts="dropdownDefaultText.region" ></div>
+				<div ng-dropdown-multiselect="" options="_data.oxidation" selected-model="formData.oxidation" extra-settings="selectedSettings" translation-texts="dropdownDefaultText.oxidation" ></div>
+				<div ng-dropdown-multiselect="" options="_data.label" selected-model="formData.label" extra-settings="selectedSettings" translation-texts="dropdownDefaultText.label" ></div>
 			</article>
 
 		</div>
 
 		<div class="col-md-9">
-			<div class="col-md-9">
-		
-				<div id="products" class="row list-group">
-					<div class="item  col-xs-4 col-lg-4" ng-repeat="tea in teas">
-						<div class="thumbnail">
-							<img class="group list-group-image" src="../images/tea.png" alt="" />
-							<div class="caption">
-								<h4 class="group inner list-group-item-heading">{{tea.label}}</h4><p class="group inner list-group-item-text">{{tea.leaf + " leaf " + tea.oxidation + " tea"}}</p>
-								<div class="row">
-									<div class="col-xs-12 col-md-6">
-										<p class="lead">{{tea.price | currency}}</p>
-									</div>
-									<div class="col-xs-12 col-md-6">
-										<button type="button" class="btn btn-success pull-right" ng-click="addToBasket(tea)">Add to card</button>
-									</div>
+			<!-- <div class="col-md-9">  для центрирования товаров, а не на всю ширину-->
+			<div id="products" class="row list-group">
+				<div class="item  col-xs-4 col-lg-4" ng-repeat="tea in teas">
+					<div class="thumbnail">
+						<img class="group list-group-image" src="../images/tea.png" alt="" />
+						<div class="caption">
+							<h4 class="group inner list-group-item-heading">{{tea.label}}</h4><p class="group inner list-group-item-text">{{tea.leaf + " leaf " + tea.oxidation + " tea"}}</p>
+							<div class="row">
+								<div class="col-xs-12 col-md-6">
+									<p class="lead">{{tea.price | currency}}</p>
+								</div>
+								<div class="col-xs-12 col-md-6">
+									<button type="button" class="btn btn-success pull-right" ng-click="addToBasket(tea)">Add to card</button>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div class="col-md-12"> <!-- PAGINATOR -->
-						<div class="text-center">
-							<ul class="pagination">
-								<li ng-class="DisablePrevPage()">
-									<a ui-sref="tea" ng-click="prevPage()"><span>&laquo;Prev</span></a>
-								</li>
-								<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
-									<a ui-sref="tea" ng-click="useFilter(n)">{{n + 1}}</a>
-								</li>
-								<li ng-class="DisableNextPage()">
-									<a ui-sref="tea" ng-click="nextPage()"><span>Next&raquo;</span></a>
-								</li>
-							</ul>	
-						</div>								
-					</div> <!-- END PAGINATOR -->
-
-				</div>					
-			</div>
+				<div class="col-md-12"> <!-- PAGINATOR -->
+					<div class="text-center">
+						<ul class="pagination">
+							<li ng-class="disablePrevPage()">
+								<a ui-sref="tea" ng-click="prevPage()"><span>&laquo;Prev</span></a>
+							</li>
+							<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
+								<a ui-sref="tea" ng-click="useFilter(n)">{{n + 1}}</a>
+							</li>
+							<li ng-class="disableNextPage()">
+								<a ui-sref="tea" ng-click="nextPage()"><span>Next&raquo;</span></a>
+							</li>
+						</ul>	
+					</div>								
+				</div> <!-- END PAGINATOR -->
+			</div>					
+			<!-- </div> -->
 		</div>
 		
 	</div>

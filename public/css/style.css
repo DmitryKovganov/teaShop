@@ -76,11 +76,12 @@ ul li{
 }
 
 .container-centered {
-	margin-top: 70px!important;
+	margin-top: 40px!important;
 }
 
 .table-collored{
 	background-color:#f8f8f8;
+	font-size: 18px;
 }
 
 li.btn-default {
