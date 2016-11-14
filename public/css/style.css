@@ -1,13 +1,93 @@
 html { 
-    overflow-y:scroll; 
+	overflow-y:scroll; 
 }
 
 body { 
-    padding-top:50px; 
-    background-repeat: repeat; 
-    background-image: url(../image/back.jpg);
+	padding-top:50px; 
+	background-repeat: repeat; 
+	background-image: url(../image/back.jpg);
 }
 
 ul li{
 	list-style: none;
+}
+
+.table-collor{
+	background-color:#f8f8f8;
+}
+.thumbnail
+{
+	margin-bottom: 20px;
+	padding: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+
+.item.list-group-item
+{
+	float: none;
+	width: 100%;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+	background: #428bca;
+}
+
+.item.list-group-item .list-group-image
+{
+	margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+	margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+	padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+	background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+	display: table;
+	content: " ";
+}
+
+.item.list-group-item img
+{
+	float: left;
+}
+.item.list-group-item:after
+{
+	clear: both;
+}
+.list-group-item-text
+{
+	margin: 0 0 11px;
+}
+.container{
+	width:100%!important;
+	margin:0!important;
+	padding:0 2%!important;
+}
+
+li.btn-default{
+	font-size:26px;
+}   
+ul.navbar-nav {
+	width: 100%;
+	text-align: center;
+}
+ul.navbar-nav  > li {
+	float: none;
+	display: inline-block;
+}
+.cont{
+	margin-top:70px!important;
 }

@@ -1,7 +1,17 @@
-<div class="container">
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">      
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            <li ui-sref="tea" class="btn btn-default"><span class="glyphicon glyphicon-home"></span></li> 
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container cont">
 	<div class="row">
         <div class="span12">
-    		<table class="table table-condensed table-hover">
+    		<table class="table table-condensed table-hover table-collor">
     			<thead>
     				<tr>
     					<th>Label</th>
@@ -35,7 +45,7 @@
     					<td></td>
     					<td></td>
     					<td></td>
-    					<td><button ui-sref="pay" type="button" class="btn btn-info">{{totalPrice}}<span class="glyphicon glyphicon-usd"></span></button></td>
+    					<td><button ui-sref="pay" type="button" class="btn btn-info">{{totalPrice | currency}}</button></td>
     				</tr>
     			</tbody>
     		</table>

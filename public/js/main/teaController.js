@@ -23,6 +23,7 @@ function teaController($scope, $http, teaService, basketService) {
  	$scope.DisablePrevPage = DisablePrevPage;
  	$scope.DisableNextPage = DisableNextPage;
 
+	$scope.totalPrice = basketService.total();
  	$scope.addToBasket = addToBasket;
 
 	$scope.slider = {
@@ -287,5 +288,6 @@ function teaController($scope, $http, teaService, basketService) {
 
 	function addToBasket(tea) {
 		basketService.add(tea);
+		$scope.totalPrice = basketService.total();
 	};
 };

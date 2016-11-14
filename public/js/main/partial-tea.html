@@ -1,9 +1,16 @@
 <!-- <button type="button" ng-click="init()">Создать</button> -->
+ <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">      
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ui-sref="basket" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> <span id="count">{{totalPrice | currency}}</span></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<div class="container">
-
-<!-- SLIDER -->
-
+<div class="container cont">
+	<!-- SLIDER -->
 	<div class="row">
 		<div class="col-md-3">
 			<article>
@@ -27,31 +34,44 @@
 		</div>
 
 		<div class="col-md-9">
-			<!-- PAGINATOR -->
-			<article>
-				<div class="pagination-div">
-					<ul class="pagination">
-						<li ng-class="DisablePrevPage()">
-							<a ui-sref="tea" ng-click="prevPage()">« Prev</a>
-						</li>
-						<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
-							<a ui-sref="tea" ng-click="useFilter(n)">{{n+1}}</a>
-						</li>
-						<li ng-class="DisableNextPage()">
-							<a ui-sref="tea" ng-click="nextPage()">Next »</a>
-						</li>
-					</ul>
-				</div>
+			<div class="col-md-9">
+		
+				<div id="products" class="row list-group">
+					<div class="item  col-xs-4 col-lg-4" ng-repeat="tea in teas">
+						<div class="thumbnail">
+							<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+							<div class="caption">
+								<h4 class="group inner list-group-item-heading">{{tea.label}}</h4><p class="group inner list-group-item-text">{{tea.leaf + " " + tea.oxidation}}</p>
+								<div class="row">
+									<div class="col-xs-12 col-md-6">
+										<p class="lead">{{tea.price | currency}}</p>
+									</div>
+									<div class="col-xs-12 col-md-6">
+										<button type="button" class="btn btn-success pull-right" ng-click="addToBasket(tea)">Add to card</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-    			<button ui-sref="basket" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+					<div class="col-md-12"> <!-- PAGINATOR -->
+						<div class="text-center">
+							<ul class="pagination">
+								<li ng-class="DisablePrevPage()">
+									<a ui-sref="tea" ng-click="prevPage()">« Prev</a>
+								</li>
+								<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
+									<a ui-sref="tea" ng-click="useFilter(n)">{{n+1}}</a>
+								</li>
+								<li ng-class="DisableNextPage()">
+									<a ui-sref="tea" ng-click="nextPage()">Next »</a>
+								</li>
+							</ul>	
+						</div>								
+					</div> <!-- END PAGINATOR -->
 
-				<ul>
-					<li class="paginationclass" ng-repeat="tea in teas">
-						<span>{{ tea }}</span>
-						<button type="button" class="btn btn-info" ng-click="addToBasket(tea)">Add to card</button>
-					</li>
-				</ul> 
-			</article>
+				</div>					
+			</div>
 		</div>
 		
 	</div>
